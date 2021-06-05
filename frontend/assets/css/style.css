@@ -1,0 +1,706 @@
+/*Generales*/
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/*Body*/
+body {
+    background-color: #ffffff;
+}
+
+
+/* Barra de navegación*/
+.navbar-collapse {
+    background: #FFFFFF;
+    margin: 2px -31px 0px -31px;
+    height: 246px !important;
+}
+
+.navbar {
+    background-color: #FFC107 !important;
+    height: 75px;
+    z-index: 1;
+    font-family: 'Roboto';
+}
+
+.navbar-light .navbar-toggler {
+    border-style: none;
+}
+
+.logo {
+    max-height: 55px;
+    height: auto;
+    width: auto;
+    margin-left: -10px;
+}
+
+.nav-item {
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.navbar-nav .nav-link {
+    margin-left: 43px;
+}
+
+.nav-item a {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: #424242 !important;
+    margin-top: 20px;
+}
+
+.nav-item a img {
+    max-height: 35px;
+    height: auto;
+    width: auto;
+    margin: 0px 28px 10px 10px;
+}
+
+.nav-item a:hover {
+    color: #0D47A1 !important;
+}
+
+.login{
+    margin-left: 800px;
+}
+
+.login button{
+    background-color: #1565C0 !important;
+}
+
+.login button:hover{
+    background-color: #0D47A1 !important;
+}
+
+.login .dropdown-menu form input[type="text"], input[type="tel"], input[type="email"] {
+    width: 220px !important;
+}
+
+/*Cards - Index*/
+#producto {
+    background-color: #EEEEEE;
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px 1px #9E9E9E;
+    margin: 15px;
+    width: 200px;
+    height: 270px;
+}
+
+#producto a{
+    text-decoration: none;
+}
+
+#producto:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 2px #9E9E9E;
+}
+
+#producto:hover p {
+    color: #1d1d1d;
+}
+
+.imgProducto {
+    padding: 1px 1px 0px 1px;
+    border-bottom: 1px solid #FFFFFF;
+}
+
+.precio {
+    margin: 5px 0px 0px 25px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: #424242;
+}
+
+.descProducto {
+    margin-left: 25px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #424242;
+}
+
+/*Eslogan*/
+.eslogan {
+    max-width: 1366px;
+    width: auto;
+    height: auto;
+}
+
+/*Formas de pago*/
+.formaDePago {
+    max-height: 75px;
+    max-width: 350px;
+    margin-top: 5px;
+    background-color: #EEEEEE;
+    box-shadow: 0px 0px 5px 1px #9E9E9E;
+}
+
+.formaDePago img {
+    max-height: 65px;
+    height: auto;
+    width: auto;
+    margin: 0px 0px 17px 75px;
+}
+
+.formaDePago p {
+    display: inline-block;
+    margin: 11px 56px 15px 15px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #424242;
+}
+
+.formaDePago a {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #1565C0;
+}
+
+.formaDePago a:hover {
+    text-decoration: none;
+    color: #0D47A1;
+}
+
+/*Barra lateral*/
+#aside{
+    display: inline-block;
+    border: 1px solid#EEEEEE;
+    min-height: 250px;
+    height: auto;
+    width: 250px;
+    margin-top: 70px;
+    margin-left: 60px;
+    box-shadow: 0px 0px 5px 1px #9E9E9E;
+    font-family: 'Roboto';
+    padding-top: 25px;
+}
+#aside .filtro{
+    text-align: center;
+    margin-top: 20px;
+}
+
+#aside .filtro div{
+    list-style: none;
+    margin: 5px;
+}
+
+#aside .filtro li a{
+    text-decoration: none;
+    color: #212121be !important;
+}
+
+#aside .filtro a:hover{
+    text-decoration: none;
+    color: #212121 !important;
+}
+
+.botonAside {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    width: 140px;
+    height: 30px;
+    margin-top: 25px;
+    margin-left: 55px;
+    margin-bottom: 25px;
+}
+
+.tituloCat{
+    margin-bottom: 20px;
+}
+
+.crear{
+    background-color: #1565C0;
+}
+
+.crear:hover{
+    background-color: #0D47A1;
+    cursor: pointer;
+}
+
+.agregarModelo{
+    background-color: #02a310d0;
+}
+
+.agregarModelo:hover{
+    background-color: #02a30faf;
+    cursor: pointer;
+}
+
+.borrar{
+    background-color: #f10202;
+}
+
+.borrar:hover{
+    background-color: #d60202 ;
+    cursor: pointer;
+    margin-bottom: 25px;
+}
+
+/*Productos*/
+#seccion{
+    display: inline-block;
+    float: right;
+    min-height: 500px;
+    height: auto;
+    width: 900px;
+    margin-top: 50px;
+    margin-right: 50px;
+}
+
+#seccion a:hover{
+    text-decoration: none;
+}
+
+#seccion .titProductos {
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    color: #424242;
+    margin-left: 8px;
+}
+#seccion .articulo{
+    border: 1px solid #EEEEEE;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 1px #9E9E9E;
+    margin: 30px 0px 35px 8px;
+    height: 200px;
+}
+
+#seccion .imagenProducto{
+    height: 199px;
+    width: auto;
+}
+
+#seccion .articulo p{
+    display: inline-block;
+    float: right;
+    max-width: 682px;
+    font-family: 'Roboto';
+    text-decoration: none;
+    padding: 15px;
+}
+
+#tituloArticulo{
+    display: block;
+    font-size: 33px;
+    color: #1d1d1d;
+}
+
+#precioArticulo{
+    font-size: 25px;
+    color: #424242;
+}
+
+#descripcionArticulo{
+    font-size: 15px;
+    color: #424242;
+}
+
+/*Titulo Destacados */
+#titProductos {
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    margin: 29px 0px 5px 0px;
+    color: #424242;
+}
+
+#titProductos span a{
+    font-size: 17px;  
+    margin-left: 8px;  
+    color: #1565C0;
+}
+#titProductos span a:hover{
+     text-decoration: none;
+     color: #0D47A1;
+}
+
+/*Formulario de Contacto*/
+#titContacto {
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    color: #424242;
+    margin-top: 40px;
+    text-align: left;
+}
+
+#titInfo {
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    color: #424242;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.contacto{
+    margin-left: 50px;
+}
+
+.contacto input[type="text"],
+.contacto input[type="tel"],
+.contacto input[type="email"], 
+.contacto select{
+    height: 35px;
+    width: 443px !important;
+    border-style: none;
+    border-color: #eeeeee;
+    border-radius: 3px;
+    padding-left: 5px;
+    font-family: 'Roboto', sans-serif;
+    background-color: transparent;
+    color: #424242;
+    border-color: #EEEEEE;
+    box-shadow: 1px 1px 1px #9E9E9E inset;
+    margin: 15px 0px -5px 0px;
+}
+
+.mensaje textarea {
+    width: 444px;
+    height: 200px;
+    margin-top: 30px;
+    border-radius: 3px;
+    background-color: transparent;
+    padding-top: 5px;
+    padding-left: 5px;
+    font-family: 'Roboto', sans-serif;
+    color: #424242;
+    border-color: #EEEEEE;
+    box-shadow: 1px 1px 1px #9E9E9E inset;
+}
+
+.contacto input[type="submit"] {
+    background-color: #1565C0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.contacto input[type="submit"]:hover {
+    cursor: pointer;
+    background-color: #0D47A1;
+    box-shadow: 0px 0px 5px 1px #9E9E9E;
+}
+
+/*Información de Contacto*/
+.infoCont {
+    max-height: 110px;
+    margin: 55px 55px 0px 120px;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.imgCont {
+    max-height: 50px;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.infoCont p {
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #424242;
+    margin: 15px 0px 0px 15px;
+}
+
+/*Footer*/
+#footer {
+    display: inline-block;
+    background: #000000;
+    margin-top: 80px;
+    height: 300px;
+    width: 100%;
+}
+
+#titFooter {
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    text-align: center;
+    color: #9E9E9E;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+#redes {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#redes img {
+    max-height: 40px;
+    width: auto;
+}
+
+#redes p {
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #9E9E9E;
+    margin-left: 5px;
+}
+
+#redes p:hover {
+    cursor: pointer;
+    color: #FFC107;
+}
+
+.sucursales{
+    display: inline-block;
+}
+
+#sucFooter li {
+    list-style: none;
+    text-align: center;
+    margin-top: 35px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #9E9E9E;
+}
+
+#sucFooter li:hover {
+    text-decoration: none;
+    color: #FFC107;
+    cursor: pointer;
+}
+
+/*Detalle de Producto*/
+#contenedor{
+    border: 1px solid #9E9E9E; 
+    width: 90%;
+    min-height: 200px;
+    margin: 0px auto;
+    margin-top: 50px;
+    box-shadow: 0px 0px 5px 1px #9E9E9E;
+    padding-bottom: 50px;
+}
+
+.imagenProductoDetalle{
+    height: 450px;
+    width: auto;
+    margin-left: 90px;
+    margin-top: 60px;
+}
+
+.articuloDetalle{
+    border-bottom: 1px solid #9E9E9E;
+    padding-bottom: 60px;
+}
+
+.articuloDetalle p{
+    display: inline-block;
+    float: right;
+    height: 450px;
+    max-width: 410px;
+    margin-top: 60px;
+    margin-right: 105px;
+    font-family: 'Roboto';
+    color: #212121;
+}
+
+#tituloArticuloDetalle{
+    display: block;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#precioArticuloDetalle{
+    display: block;
+    font-size: 25px;
+    text-align: center;
+}
+
+#descripcionArticuloDetalle{
+    display: block;
+    font-size: 15px;
+    text-align: center;
+}
+
+.botonDetalle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    width: 200px;
+    height: 50px;
+    margin-top: 25px;
+    margin-left: 105px;
+}
+
+.comprar{
+    background-color: #1565C0;
+}
+
+.comprar:hover{
+    background-color: #0D47A1;
+    cursor: pointer;
+}
+
+.agregarCarrito{
+    background-color: #e3edfb;
+    color: #3483fa;
+}
+
+.agregarCarrito:hover{
+    background-color: #e3edfbb6;
+    cursor: pointer;
+}
+
+/*Opiniones del producto*/
+.comentarios{
+    margin: 30px;
+    font-family: 'Roboto';
+    border-bottom: 1px solid #9E9E9E;
+    padding-bottom: 40px;
+}
+.comentarios h4{
+    margin-bottom: 20px;
+}
+
+.comentarios .comentar{
+    margin: 0px !important;
+}
+
+/*Calificaciones*/  
+  .clasificacion input[type="radio"] {
+    display: none;
+  }
+  
+  .clasificacion label {
+    color: grey;
+  }
+  
+  .clasificacion {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+  }
+  
+  .clasificacion label:hover,
+  .clasificacion label:hover ~ label {
+    color: orange;
+  }
+  
+  .clasificacion input[type="radio"]:checked ~ label {
+    color: orange;
+  }
+
+  /*Crear Categoria - Agregar Marcas y Modelos*/
+#completarAside{
+    border: 1px solid #9E9E9E;
+    border-radius: 3px;
+    max-width: 700px;
+    min-height: 200px;
+    height: auto;
+    margin: auto;
+    margin-top: 60px ;
+    font-family: 'Roboto';
+    padding: 10px;
+    background: #eeeeee;
+}
+
+#completarAside input[type="text"]{
+    width: 400px;    
+    padding-left: 5px;
+    margin-left: 150px;
+}
+
+#completarAside input[type="submit"]{
+    margin-top: 40px;
+    margin-left: 270px;
+}
+
+.opcionAside{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+
+.modificar{
+    width: 150px;
+    margin-top: 30px !important;
+}
+
+.comentarioRealizado{
+    display: inline-block;
+    width: 100%;
+    margin: 0px auto;
+}
+
+.comentarioRealizado h4{
+    margin-left: 25px;
+    margin-bottom: 40px;
+}
+
+.comentarioRealizado article{
+    background: #ebeaea;
+    width: 90%;
+    min-height: 150px;
+    height: auto;
+    margin: 0px auto;
+    margin-bottom: 30px;
+    padding: 15px;
+}
+
+.comentarioRealizado p{
+    font-family: 'Roboto';
+    color: #212121;
+}
+
+.comentarioRealizado .comentarioUsuario{
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.nombreUsuario, .calificacionUsuario{
+    font-size: 16px;
+}
+
+.productosInline{
+    display: inline-block;
+}
+
+.ordenamiento{
+    display: inline-block !important;
+    margin-left: 620px;
+    font-family: 'Roboto';
+}
+
+.ordenamiento button{
+   margin-bottom: 10px;
+   background-color: #9E9E9E;
+   border: none;
+}
+
+.filtrosOrde a{
+    font-family: 'Roboto' !important;
+    color: #5f5f5f;
+}
+
+.borrarFiltrado{
+    color: #000000 !important;
+}
+
+.borrarFiltrado:hover{
+    color: #000000 !important;
+    font-size: 17px;
+}
+
+.articulo #articuloDestacado{
+    float: right;
+    font-family: 'Roboto';
+    font-size: 15px;
+    color: #e6ac00 !important; 
+}
+
+.promedioCalificacion{
+    margin-left: 60px;
+    margin-bottom: 20px;
+}
