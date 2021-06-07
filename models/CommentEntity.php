@@ -2,7 +2,7 @@
 
     require_once ('BaseEntity.php');
 
-    class PostEntity extends BaseEntity{
+    class CommentEntity extends BaseEntity{
     
         private $email; 
         private $comentario;
@@ -29,7 +29,7 @@
             return $this->comentario;
         }
 
-        public function getRank(){
+        public function getRank(){ 
             return $this->rank;
         }
 

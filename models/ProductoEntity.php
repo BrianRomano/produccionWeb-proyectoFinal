@@ -11,6 +11,7 @@
         private $activo;
         private $destacado;
         private $categoria;
+        private $modelo;
 
         public function __construct(){
             parent::__construct();
@@ -50,6 +51,10 @@
             return $this->categoria;
         }
 
+        public function getModelo(){
+            return $this->modelo;
+        }
+
 
         /**
          * Defino los Setters
@@ -81,6 +86,10 @@
 
         public function setCategoria($categoria){
             $this->categoria = $categoria;
+        }
+
+        public function setModelo($modelo){
+            $this->modelo = $modelo;
         }
 
     }

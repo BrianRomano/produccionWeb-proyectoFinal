@@ -10,7 +10,7 @@
 
         function __construct($con){
             parent::__construct($con);
-            $this->table = 'users';
+            $this->table = 'users'; 
             $this->perfilDAO = new PerfilDAO($con);
         }
 

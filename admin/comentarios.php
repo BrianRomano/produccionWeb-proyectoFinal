@@ -1,6 +1,14 @@
 <!-- Header  -->
 <?php include_once('./layouts/header.php') ?>
 
+<?php
+
+  include_once('./../logic/CommentBusiness.php');
+  include_once('./../logic/ProductoBusiness.php');
+
+  $ComB = new CommentBusiness($con);
+?>
+
   <body class="dark-edition">
     <!-- Barra Lateral -->
       <?php include_once('./layouts/aside.php')?> 
@@ -18,7 +26,6 @@
                   <div class="card-body">
                     <div class="table-responsive">
                       <table class="table table-hover">
-
                         <!-- Inicio De Columnas -->
                         <thead>
                           <th>
@@ -37,35 +44,13 @@
                             Fecha
                           </th>
                           <th>
-                            <div class="dropdown">
-                              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                A / D
-                              </button>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="">Borrar filtro</a>
-                                <a class="dropdown-item" href="">Activos</a>
-                                <a class="dropdown-item" href="">Inactivos</a>
-                              </div>
-                            </div>
+                            ID Producto
                           </th>
                           <th>
-                            <div class="dropdown">
-                              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                ID Producto
-                              </button>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="index.php">Borrar filtro</a>
-                                <?php 
-                                  $datosProd = file_get_contents('./../../../datos/producto.json');
-                                  $producto = json_decode($datosProd, true);
-                                  foreach($producto as $prod):
-                                ?>
-                                  <a class="dropdown-item" href="comentarios.php?id=<?php echo $prod['id_producto']?>"><?php echo $prod['id_producto']?></a>
-                                <?php
-                                  endforeach;
-                                ?>
-                              </div>
-                            </div>
+                            IP
+                          </th>
+                          <th>
+                            Activo
                           </th>
                           <th>
                             Acciones
@@ -76,16 +61,16 @@
                         <!-- Inicio de Filas -->
                         <tbody>
                           <?php 
-                            $datos = file_get_contents("./../../../datos/comentario.json");
-                            $datosJson = json_decode($datos, true);
-                            if(!empty($datosJson)):
-                              foreach($datosJson as $com):
+
+                              foreach($ComB->getComments() as $com):
                                 $imprimir = true;
+
                                 //Comprobar si existe un filtro
                                 if(isset($_GET['id'])){
                                   $imprimir = true;
+
                                   //Filtrar
-                                  if($com['id_producto'] != $_GET['id']){
+                                  if($com->getId() != $_GET['id']){
                                     $imprimir = false;
                                   }
                                 }
@@ -93,34 +78,39 @@
                           ?>
                             <tr>
                               <td>
-                                <?php echo $com['id_comentario']?>
+                                <?php echo $com-getId()?>
                               </td>
                               <td>
-                                <?php echo $com['email']?>
+                                <?php echo $com->getEmail()?>
                               </td>
                               <td>
-                                <?php echo $com['comentario']?>
+                                <?php echo $com->getComentario()?>
                               </td>
                               <td>
-                                <?php echo $com['calificacion']?>
+                                <?php echo $com->getRank()?>
                               </td>
                               <td>
-                               <!-- FECHA -->
+                                <?php echo $com->getFecha()?>
                               </td>
                               <td>
-                               <!-- ACTIVO -->
+                                <?php echo $com->getProducto()?>
                               </td>
                               <td>
-                                <?php echo $com['id_producto']?>
+                                <?php echo $com->getIp()?>
                               </td>
                               <td>
-                                <a href="comentarios.php"><button type="submit" class="btn btn-primary sesionBtn">Activar</button></a>
+                                <?php 
+                                  if($com->getActivo() == 1){
+                                    echo 'Si';
+                                  } else {
+                                    echo 'No';
+                                  }
+                                ?>
                               </td>
                             </tr>
                           <?php 
                                 endif;
                               endforeach;
-                            endif;
                           ?>
                         </tbody>
                         <!-- Fin de Filas -->

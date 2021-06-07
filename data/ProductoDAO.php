@@ -2,25 +2,30 @@
 
     require_once('DAO.php');
     require_once('CategoryDAO.php');
-    require_once('UserDAO.php');
+    require_once('ModelsDAO.php');
     require_once('./../models/ProductoEntity.php');
+    require_once('./../models/CategoryEntity.php');
+    require_once('./../models/ModelsEntity.php');
 
     class ProductoDAO extends DAO{
 
-        protected $UserDao;
         protected $CategoryDao;
+        protected $ModelsDao;
 
         function __construct($con){
             parent::__construct($con);
             $this->table = 'productos';
             $this->CategoryDao = new CategoryDAO($con);
+            $this->ModelsDao = new ModelsDAO($con); 
         }
 
         // OBTENER UN PRODUCTO
         public function getOne($id){
-            $sql = "SELECT id,titulo,descripcion,precio,imagen,activo,destacado,categoria FROM $this->table WHERE id = $id";
+            $sql = "SELECT id,titulo,descripcion,precio,imagen,activo,destacado,categoria,modelo FROM $this->table WHERE id = $id";
             $resultado = $this->con->query($sql,PDO::FETCH_CLASS,'ProductoEntity')->fetch();
+
             $resultado->setCategoria($this->CategoryDao->getOne($resultado->getCategoria()));
+            $resultado->setModelo($this->ModelsDao->getOne($resultado->getModelo()));
 
             return $resultado;
         }
@@ -34,20 +39,26 @@
                 $sqlWhereStr .= ' AND categoria = '.$where['cat'];
             }
 
+            if(!empty($where['mod'])){
+                $sqlWhereStr .= ' AND modelo = '.$where['mod'];
+            }
+
             $sql = "SELECT  id,
                             titulo,
                             descripcion,
                             precio,
-                            imagen, 
+                            imagen,  
                             activo,
                             destacado,
-                            categoria 
+                            categoria, 
+                            modelo
                     FROM $this->table $sqlWhereStr";
 
             $resultado = $this->con->query($sql,PDO::FETCH_CLASS,'ProductoEntity')->fetchAll();
 
             foreach($resultado as $index=>$res){
                 $resultado[$index]->setCategoria($this->CategoryDao->getOne($res->getCategoria()));
+                $resultado[$index]->setModelo($this->ModelsDao->getOne($res->getModelo()));
             }
 
             return $resultado;

@@ -3,6 +3,11 @@
 
 <!-- Eliminar Producto -->
   <?php 
+
+    include_once('./../logic/ProductoBusiness.php');
+    $ProdB = new ProductoBusiness($con);
+
+    /*
     if(isset($_GET['del'])){
       $datos = file_get_contents('./../../../datos/producto.json');
       $datosJson = json_decode($datos,true);
@@ -13,6 +18,7 @@
       fclose($fp);
       redirect('index.php');
     }
+    */
   ?>
 
   <body class="dark-edition">
@@ -64,55 +70,55 @@
                         </thead>
                         <tbody>
                         <?php 
-                          $datos = file_get_contents("./../../../datos/producto.json");
-                          $datosJson = json_decode($datos, true);
-                          foreach($datosJson as $prod):
+                          foreach($ProdB->getProductos() as $prod):
                         ?>
                           <tr>
                             <td>
-                              <?php echo $prod['id_producto']?>
+                              <?php echo $prod->getId()?>
                             </td>
                             <td>
-                              <?php echo $prod['nombre']?>
+                              <?php echo $prod->getTitulo()?>
                             </td>
                             <td>
-                              <?php echo $prod['precio']?>
+                              <?php echo $prod->getDescripcion()?>
                             </td>
                             <td>
-                              <?php echo $prod['descripcion']?>
+                              <?php echo $prod->getPrecio()?>
                             </td>
+                            <td>
                             <?php 
-                                if($prod['activo'] == true){
+                                if($prod->getActivo() == 1){
                                   echo 'Si';
                                 } else {
                                   echo 'No';
                                 }
                               ?>
                             </td>
+                            <td>
                             <?php 
-                                if($prod['destacado'] == true){
+                                if($prod->getDestacado() == 1){
                                   echo 'Si';
                                 } else {
                                   echo 'No';
                                 }
                               ?>
-                            <td>
-                              <?php echo $prod['id_categoria']?> 
                             </td>
                             <td>
-                              <?php echo $prod['id_marca']?>
-                            </td>
+                              <?php echo $prod->getCategoria()?> 
                             </td>
                             <td>
-                              <a href="agregar-productos.php?edit=<?php echo $prod['id_producto']?>"><img class="icons" src="./assets/icon/lapiz.png" alt="Editar"></a>
-                              <a href="productos.php?del=<?php echo $prod['id_producto']?>"><img class="icons" src="./assets/icon/eliminar.png" alt="Eliminar"></a>
-                              <a href="productos.php?act=<?php echo $prod['id_producto']?>"><img class="icons" src="./assets/icon/activar.png" alt="Activar"></a>
-                              <a href="productos.php?des=<?php echo $prod['id_producto']?>"><img class="icons" src="./assets/icon/desactivar.png" alt="Desactivar"></a>
+                              <?php echo $prod->getModelo()?>
                             </td>
+                            <td>
+                              <a href="agregar-productos.php?edit=<?php echo $prod->getId()?>"><img class="icons" src="./assets/icon/lapiz.png" alt="Editar"></a>
+                              <a href="productos.php?del=<?php echo $prod->getId()?>"><img class="icons" src="./assets/icon/eliminar.png" alt="Eliminar"></a>
+                              <a href="productos.php?act=<?php echo $prod->getId()?>"><img class="icons" src="./assets/icon/activar.png" alt="Activar"></a>
+                              <a href="productos.php?des=<?php echo $prod->getId()?>"><img class="icons" src="./assets/icon/desactivar.png" alt="Desactivar"></a>
+                            </td>
+                          </tr>
                           <?php 
                             endforeach;
                           ?>
-                          </tr>
                         </tbody>
                       </table>
                     </div>

@@ -2,7 +2,7 @@
     <div class="sidebar" data-color="purple" data-background-color="black" data-image="./../assets/img/sidebar-2.jpg">
         <div class="logo">
             <a href="index.php" class="simple-text logo-normal">
-            Administrador
+            Tablas
             </a>
         </div>
         <div class="sidebar-wrapper">
@@ -22,13 +22,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="categorias.php">
                         <i class="material-icons">content_paste</i>
-                        <p>Categorias</p>
+                        <p>Marcas</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="marcas.php">
+                    <a class="nav-link" href="modelos.php">
                         <i class="material-icons">content_paste</i>
-                        <p>Marcas</p>
+                        <p>Modelos</p>
                     </a>
                 </li>
                 <li class="nav-item">

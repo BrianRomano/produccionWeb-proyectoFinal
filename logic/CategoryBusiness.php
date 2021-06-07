@@ -16,4 +16,10 @@
             return $categorias;
         }
 
+        // OBTENER UNA CATEGORIA
+        public function getCategorie($id){
+            $categorias = $this->CategoryDao->getOne($id); 
+            return $categorias;
+        }
+
     }

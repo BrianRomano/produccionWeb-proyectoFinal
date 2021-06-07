@@ -5,16 +5,15 @@
     
     /* HEADER */
     include('./layouts/header.php');
+
+    /* COMENTARIOS*/
+    include('./../logic/CommentBusiness.php');
 ?>
 
 <!-- Cargar DETALLE DE PRODUCTO enviado por la URL -->
     <?php 
         $ProdB = new ProductoBusiness($con);
-        foreach($ProdB->getProductos($_GET) as $prod){
-            if($prod->getId() == $_GET['id']){
-                break;
-            }
-        }
+        $prod = $ProdB->getProducto($_GET['id']);
     ?>
 
     <div id="contenedor"> 
@@ -25,7 +24,7 @@
             <p>
                 <span id="tituloArticuloDetalle"><?php echo $prod->getTitulo() ?></span><br>
                 <span id="precioArticuloDetalle">$<?php echo $prod->getPrecio() ?></span><br>
-                <span id="descripcionArticuloDetalle"><?php echo $prod->getDescripcion() */ ?></span>
+                <span id="descripcionArticuloDetalle"><?php echo $prod->getDescripcion() ?></span>
                 <br><input class="botonDetalle comprar" type="submit" value = "Comprar">
                 <br><input class="botonDetalle agregarCarrito" type="submit" value = "Agregar al carrito">
             </p>
@@ -56,42 +55,17 @@
             </p>
             <input class="botonAside crear comentar" name="comentar" type="submit" value="Comentar">
         </form>
-        
-        <!-- GUARDAR COMENTARIO-->
-            <?php 
-                /*
-                $ComB = new CommentBusiness($con);
 
-                if(isset($_POST['comentar'])){
-                    $id = date('Ymdhis');
-                    $Comentario[$id] = array('id_comentario'=>$id, 'email'=>$_POST['email'], 'comentario'=>$_POST['comentario'], 'calificacion'=>$_POST['calificacion'], 'id_producto'=>$_GET['id']);
-                    $fp = fopen('./../../datos/comentario.json','w');
-                    $datosString = json_encode($Comentario);
-                    fwrite($fp,$datosString);
-                    fclose($fp);
-                }
-                
-            ?>
-        
     <!-- COMENTARIOS -->
         <div class="comentarioRealizado">
             <?php     
+                $ComB = new CommentBusiness($con);
+                echo '<h4>Comentarios del producto</h4>';
+                echo '<h6 class=promedioCalificacion>Promedio calificación: </h6>';
                 
-                $ComB = new CommentsBusiness($con);
-
-                if(!empty($ComB->getComentarios())):
-                    echo "<h4>Comentarios del producto</h4>";
-                    echo "<h6 class='promedioCalificacion'>Promedio calificación:</h6>";
-
-                    //Mostrar últimos 10 comentarios
-                    arsort($ComB);
-                    $ultimosCom = array_slice($ComB->getComentarios(), 0, 10);
-
-                    //Mostrar solo si existen comentarios
-                    foreach($ultimosCom as $com):
-
-                        //Mostrar comentarios correspondiente al producto
-                        if($com->getId() == $_GET['id']):
+                foreach($ComB->getComments() as $com):
+                    //Mostrar comentarios correspondiente al producto
+                    if($com->getId() == $_GET['id']):
             ?>
                 <article>
                     <p class = "nombreUsuario">
@@ -101,13 +75,12 @@
                         <?php echo $com->getComentario() ?>
                     </p>
                     <p class="calificacionUsuario">
-                        Calificación: <?php echo $com->getPuntuacion() ?>
+                        Calificación: <?php echo $com->getRank() ?>
                     </p>
                 </article>
             <?php 
-                        endif;
-                    endforeach;
-                endif;*/
+                    endif;
+                endforeach; 
             ?>
         </div>
     </div>

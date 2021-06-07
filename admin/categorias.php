@@ -1,26 +1,26 @@
-<!-- HEADER  -->
+<!-- HEADER -->
   <?php include_once('./layouts/header.php') ?>
 
-<!-- ELIMINAR CATEGORIA -->
   <?php 
+    
+    include_once('./../logic/CategoryBusiness.php');
+
+    $Catb = new CategoryBusiness($con);
+
+    // ELIMINAR CATEGORIA
     if(isset($_GET['del'])){
-      $datos = file_get_contents('./../../../datos/categoria.json');
-      $datosJson = json_decode($datos,true);
-      unset($datosJson[$_GET['del']]);
-      $fp = fopen('./../../../datos/categoria.json','w');
-      $datosString = json_encode($datosJson);
-      fwrite($fp,$datosString);
-      fclose($fp);
-      redirect('index.php');
+      $Catb->deleteCategorie($_GET['del']);
+      redirect('categorias.php');
     }
+    
   ?>
 
   <body class="dark-edition">
 
     <!-- ASIDE  -->
-      <?php include_once('./layouts/aside.php') ?>
+      <?php include_once('./layouts/aside.php')?> 
 
-      <!-- MENU -->
+      <!-- MARCAS -->
       <div class="main-panel">
         <div class="content">
           <div class="container-fluid">
@@ -28,7 +28,7 @@
               <div class="col-md-12">
                 <div class="card card-plain">
                   <div class="card-header card-header-primary">
-                    <h4 class="card-title mt-0">Categorias</h4>
+                    <h4 class="card-title mt-0">Marcas</h4>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -41,44 +41,48 @@
                             Nombre
                           </th>
                           <th>
-                            Activo
+                            Activo     
                           </th>
                           <th>
                             Acciones
                           </th>
                         </thead>
                         <tbody>
-                        <?php 
-                          $datos = file_get_contents("./../../../datos/categoria.json");
-                          $datosJson = json_decode($datos, true);
-                          foreach($datosJson as $cat):
-                        ?>
+                          <?php 
+                            foreach($Catb->getCategories() as $cat):
+                          ?>
                           <tr>
                             <td>
-                              <?php echo $cat['id_categoria']?>
+                              <?php echo $cat->getId()?>
                             </td>
                             <td>
-                              <?php echo $cat['nombre']?>
+                              <?php echo $cat->getNombre()?>   
                             </td>
                             <td>
-                              <!-- ACTIVO  -->
+                              <?php 
+                                  if($cat->getActivo() == 1){
+                                    echo 'Si';
+                                  } else {
+                                    echo 'No';
+                                  }
+                              ?>
                             </td>
                             <td>
-                              <a href="agregar-categoria.php?edit=<?php echo $cat['id_categoria']?>"><img class="icons" src="./assets/icon/lapiz.png" alt="Editar"></a>
-                              <a href="categorias.php?del=<?php echo $cat['id_categoria']?>"><img class="icons" src="./assets/icon/eliminar.png" alt="Eliminar"></a>
-                              <a href="categorias.php?act=<?php echo $cat['id_categoria']?>"><img class="icons" src="./assets/icon/activar.png" alt="Activar"></a>
-                              <a href="categorias.php?des=<?php echo $cat['id_categoria']?>"><img class="icons" src="./assets/icon/desactivar.png" alt="Desactivar"></a>
+                              <a href="agregar-categoria.php?edit=<?php echo $cat->getId()?>"><img class="icons" src="./assets/icon/lapiz.png" alt="Editar"></a>
+                              <a href="categorias.php?del=<?php echo $cat->getId()?>"><img class="icons" src="./assets/icon/eliminar.png" alt="Eliminar"></a>
+                              <a href="categorias.php?act=<?php echo $cat->getId()?>"><img class="icons" src="./assets/icon/activar.png" alt="Activar"></a>
+                              <a href="categorias.php?des=<?php echo $cat->getId()?>"><img class="icons" src="./assets/icon/desactivar.png" alt="Desactivar"></a>
                             </td>
                           </tr>
-                        <?php 
-                          endforeach;
-                        ?>
+                          <?php
+                            endforeach;
+                          ?>
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
-                <a href="agregar-categoria.php"><button type="button" class="btn btn-primary col-md-2" style="margin-top:-60px; float:right">Agregar</button></a>
+                <a href="agregar-categoria.php"><button type="button" class="btn btn-primary col-md-2" style="margin-top:-60px; float:right">Agregar</button></a> 
               </div>
             </div>
           </div>

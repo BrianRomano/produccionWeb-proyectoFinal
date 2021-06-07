@@ -1,14 +1,14 @@
-<!-- HEADER -->
-<?php include_once('./layouts/header.php') ?> 
+<!-- Header  -->
+<?php include_once('./layouts/header.php') ?>
 
-<!-- AGREGAR Producto - EDITAR Producto -->
+<!-- Agregar Producto - Editar Producto -->
   <?php 
 
-    include_once('./../logic/CategoryBusiness.php');
-    $Catb = new CategoryBusiness($con);
+    include_once('./../logic/ModelsBusiness.php');
+    $ModB = new ModelsBusiness($con);
 
-  /*
-    $datos = file_get_contents('./../../../datos/marca.json');
+    /*
+    $datos = file_get_contents('./../../../datos/categoria.json');
     $datosJson = json_decode($datos,true);
 
     if(isset($_POST['add'])){
@@ -18,8 +18,8 @@
           $id = date('Ymdhis');
       }
 
-      $datosJson[$id] = array('id_marca'=>$id, 'nombre'=>$_POST['nombre']);
-      $fp = fopen('./../../../datos/marca.json','w');
+      $datosJson[$id] = array('id_categoria'=>$id, 'nombre'=>$_POST['nombre']);
+      $fp = fopen('./../../../datos/categoria.json','w');
       $datosString = json_encode($datosJson);
       fwrite($fp,$datosString);
       fclose($fp);
@@ -28,16 +28,18 @@
 
     if(isset($_GET['edit'])){
         $dato = $datosJson[$_GET['edit']];
-    }*/
+    }
+    */
+
   ?>
 
-<!-- Formulario de Marcas -->
+<!-- Formulario de Materiales -->
   <body class="dark-edition">
-  <h3 class="iniSesion">Marcas</h3><br><br>
+  <h3 class="iniSesion">Modelos</h3><br><br>
       <div id="login" class = "agregar">
-      <form action="" method="post">
+          <form action="" method="post">
             <div class="form-group">
-              <label for="exampleDropdownFormEmail1" class ="titulo">Nueva marca</label>
+              <label for="exampleDropdownFormEmail1" name="nombreMaterial" class ="titulo">Nueva categorias</label>
               <input type="text" placeholder="Nombre" name="nombre" class="form-control" value="<?php echo isset($dato)?$dato['nombre']:''?>">
               <input type="submit" class="btn btn-primary loginBtn" name="add" value="Agregar">
             </div>

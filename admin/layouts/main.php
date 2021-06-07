@@ -7,14 +7,14 @@
         </div>
         <div class="card text-center" style="width: 18rem; display: inline-block; margin-left: 50px; ">
             <div class="card-body">
-                <h5 class="card-title">Categorias</h5>
-                <a href="categorias.php" class="btn btn-primary">Ver categorias</a>
+                <h5 class="card-title">Marcas</h5>
+                <a href="categorias.php" class="btn btn-primary">Ver marcas</a>
             </div>
         </div>
         <div class="card text-center" style="width: 18rem; display: inline-block; margin-left: 50px; ">
             <div class="card-body">
-                <h5 class="card-title">Marcas</h5>
-                <a href="marcas.php" class="btn btn-primary">Ver marcas</a>
+                <h5 class="card-title">Modelos</h5>
+                <a href="modelos.php" class="btn btn-primary">Ver modelos</a>
             </div>
         </div>
         <div class="card text-center" style="width: 18rem; display: inline-block; margin-left: 70px; ">

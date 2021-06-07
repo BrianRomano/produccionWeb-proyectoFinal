@@ -6,38 +6,45 @@
     /* HEADER */
     include('./layouts/header.php');
 
-    /* CATEGORIAS */
     include('./../logic/CategoryBusiness.php');
+    include('./../logic/ModelsBusiness.php');
 ?>
 
     <div class = "contenido">
 
         <!-- FILTROS -->
         <aside id="aside">
-
-            <!-- CATEGORIAS -->
             <div class="filtro">
-                <h4 class="tituloCat">Categorias</h4>
+
+            <!-- MARCAS -->
+                <h4 class="tituloCat">Marcas</h4>
                 <?php 
                     $catB = new CategoryBusiness($con);
                     foreach($catB->getCategories() as $cat):
                 ?>
-                <div>
+                <div> 
                     <li> 
-                        <?php 
-                            if($cat->getPadre() == 0):
-                        ?>
-                        <a href="productos.php?cat=<?php echo $cat->getId()?>">
-                        <?php echo $cat->getNombre() ?></a>
-                        <?php 
-                            endif;
-                        ?>
+                        <a href="productos.php?cat=<?php echo $cat->getId()?>"><?php echo $cat->getNombre()?></a>
+                    </li>
+                </div>
+                <?php 
+                    endforeach; 
+                ?>
+                <br>
+                <!-- MODELOS -->
+                <h4 class="tituloCat">Modelos</h4>
+                <?php 
+                    $modB = new ModelsBusiness($con);
+                    foreach($modB->getModels() as $mod):
+                ?>
+                <div> 
+                    <li> 
+                        <a href="productos.php?mod=<?php echo $mod->getId()?>"><?php echo $mod->getNombre()?></a>
                     </li>
                 </div>
                 <?php 
                     endforeach; 
                 ?> 
-            </div>
 
             <!-- BORRAR FILTROS -->
             <a href="productos.php">
@@ -57,11 +64,11 @@
                 Ordenar por
                 </button>
                 <div class="dropdown-menu filtrosOrde" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="">Destacados</a>
-                    <a class="dropdown-item" href="">Mayor precio</a>
-                    <a class="dropdown-item" href="">Menor precio</a>
-                    <a class="dropdown-item" href="">Mejor calificados</a>
-                    <a class="dropdown-item borrarFiltrado" href="index.php">Borrar filtros</a>
+                    <a class="dropdown-item" href="productos.php?dest=1">Destacados</a>
+                    <a class="dropdown-item" href="productos.php?may">Mayor precio</a>
+                    <a class="dropdown-item" href="productos.php?men">Menor precio</a>
+                    <a class="dropdown-item" href="productos.php?rank">Mejor calificados</a>
+                    <a class="dropdown-item borrarFiltrado" href="productos.php">Borrar filtros</a>
                 </div>
             </div>
 
