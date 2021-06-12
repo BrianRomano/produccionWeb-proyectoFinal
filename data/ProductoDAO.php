@@ -35,12 +35,30 @@
 
             $sqlWhereStr = ' WHERE 1=1 ';
 
+            $sqlOrderBy = ' titulo ';
+
             if(!empty($where['cat'])){
                 $sqlWhereStr .= ' AND categoria = '.$where['cat'];
             }
 
             if(!empty($where['mod'])){
                 $sqlWhereStr .= ' AND modelo = '.$where['mod'];
+            }
+
+            if(!empty($where['dest'])){
+                $sqlWhereStr .= ' AND destacado = '.$where['dest'];
+            }
+
+            if(!empty($where['asc'])){
+                $sqlOrderBy .= $where['asc'];
+            }
+
+            if(!empty($where['desc'])){
+                $sqlOrderBy .= $where['desc'];
+            }
+
+            if(!empty($where['rank'])){
+                $sqlOrderBy .= $where['desc'];
             }
 
             $sql = "SELECT  id,
@@ -52,7 +70,7 @@
                             destacado,
                             categoria, 
                             modelo
-                    FROM $this->table $sqlWhereStr";
+                    FROM $this->table $sqlWhereStr ORDER BY $sqlOrderBy";
 
             $resultado = $this->con->query($sql,PDO::FETCH_CLASS,'ProductoEntity')->fetchAll();
 
@@ -64,23 +82,6 @@
             return $resultado;
         }
 
-        // GUARDAR PRODUCTO
-        public function save($data = array()){
-            $save = parent::save($data);
-            return $data;
-        }
-
-        // MODIFICAR PRODUCTO
-        public function modify($id, $data = array()){
-            $save = parent::modify($id, $data ); 
-            return $id;
-        }
-
-        // ELIMINAR PRODUCTO
-        public function delete($id){
-            return parent::delete($id);
-        }
-        
     }
 
 ?>

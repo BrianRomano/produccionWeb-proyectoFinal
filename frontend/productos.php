@@ -17,34 +17,30 @@
             <div class="filtro">
 
             <!-- MARCAS -->
-                <h4 class="tituloCat">Marcas</h4>
                 <?php 
                     $catB = new CategoryBusiness($con);
+                    $modB = new ModelsBusiness($con);
                     foreach($catB->getCategories() as $cat):
                 ?>
                 <div> 
                     <li> 
-                        <a href="productos.php?cat=<?php echo $cat->getId()?>"><?php echo $cat->getNombre()?></a>
-                    </li>
+                        <h5><a href="productos.php?cat=<?php echo $cat->getId()?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>"><?php echo $cat->getNombre()?></a></h5><br>
+                        <?php 
+                            foreach($modB->getModels() as $mod):
+                                if(isset($_GET['cat'])):
+                                    if($mod->getCategoria() == $cat->getId()):
+                        ?>
+                        <a href="productos.php?mod=<?php echo $mod->getId()?>&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>"><?php echo $mod->getNombre()?></a><br>
+                        <?php 
+                                    endif;
+                                endif;
+                            endforeach; 
+                        ?>
+                    </li><hr>
                 </div>
                 <?php 
                     endforeach; 
                 ?>
-                <br>
-                <!-- MODELOS -->
-                <h4 class="tituloCat">Modelos</h4>
-                <?php 
-                    $modB = new ModelsBusiness($con);
-                    foreach($modB->getModels() as $mod):
-                ?>
-                <div> 
-                    <li> 
-                        <a href="productos.php?mod=<?php echo $mod->getId()?>"><?php echo $mod->getNombre()?></a>
-                    </li>
-                </div>
-                <?php 
-                    endforeach; 
-                ?> 
 
             <!-- BORRAR FILTROS -->
             <a href="productos.php">
@@ -64,10 +60,10 @@
                 Ordenar por
                 </button>
                 <div class="dropdown-menu filtrosOrde" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="productos.php?dest=1">Destacados</a>
-                    <a class="dropdown-item" href="productos.php?may">Mayor precio</a>
-                    <a class="dropdown-item" href="productos.php?men">Menor precio</a>
-                    <a class="dropdown-item" href="productos.php?rank">Mejor calificados</a>
+                    <a class="dropdown-item" href="productos.php?dest=1&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>">Destacados</a>
+                    <a class="dropdown-item" href="productos.php?asc=asc&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>">A-Z</a>
+                    <a class="dropdown-item" href="productos.php?desc=desc&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>">Z-A</a>
+                    <a class="dropdown-item" href="productos.php?rank&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>">Mejor calificados</a>
                     <a class="dropdown-item borrarFiltrado" href="productos.php">Borrar filtros</a>
                 </div>
             </div>

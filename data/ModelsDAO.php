@@ -12,7 +12,7 @@
 
         // OBTENER UNA MARCA
         public function getOne($id){
-            $sql = "SELECT id,nombre,activo FROM $this->table WHERE id = $id";
+            $sql = "SELECT id,nombre,activo,categoria FROM $this->table WHERE id = $id";
             $resultado = $this->con->query($sql,PDO::FETCH_CLASS,'ModelsEntity')->fetch();
             
             return $resultado;
@@ -20,7 +20,7 @@
 
         // OBTENER TODAS LAS MARCAS
         public function getAll($where = array()){
-            $sql = "SELECT id,nombre,activo FROM $this->table";
+            $sql = "SELECT id,nombre,activo,categoria FROM $this->table";
             $resultado = $this->con->query($sql,PDO::FETCH_CLASS,'ModelsEntity')->fetchAll();
             
             return $resultado;

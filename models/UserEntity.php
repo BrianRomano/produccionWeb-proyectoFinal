@@ -61,4 +61,13 @@
         public function setPerfiles($perfiles){
             $this->perfiles = $perfiles;
         }
+
+        public function poseePerfil($id){
+            foreach($this->getPerfiles() as $perfil){
+                if($perfil->getId() == $id){
+                    return true;
+                }
+            }
+            return false;
+        }
     }  

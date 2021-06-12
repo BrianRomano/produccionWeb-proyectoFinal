@@ -104,10 +104,10 @@
                               ?>
                             </td>
                             <td>
-                              <?php echo $prod->getCategoria()?> 
+                              <?php echo implode(', ',array_map(function ($c){return $c->getNombre();},$prod->getCategoria()))?>
                             </td>
                             <td>
-                              <?php echo $prod->getModelo()?>
+                              <?php ?>
                             </td>
                             <td>
                               <a href="agregar-productos.php?edit=<?php echo $prod->getId()?>"><img class="icons" src="./assets/icon/lapiz.png" alt="Editar"></a>

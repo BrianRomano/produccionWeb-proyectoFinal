@@ -6,6 +6,7 @@
     
         private $nombre;
         private $activo;
+        private $categoria;
 
         public function __construct(){
             parent::__construct();
@@ -24,6 +25,11 @@
             return $this->activo;
         }
 
+        public function getCategoria(){
+            return $this->categoria;
+        }
+
+
 
         /**
          * Defino los Setters
@@ -35,6 +41,10 @@
 
         public function setActivo($activo){
             $this->activo = $activo;
+        }
+
+        public function setCategoria($categoria){
+            $this->categoria = $categoria;
         }
 
     }

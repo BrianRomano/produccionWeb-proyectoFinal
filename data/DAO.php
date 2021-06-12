@@ -26,11 +26,10 @@
             }
 
             $sql = "INSERT INTO ".$this->table."(".implode(',',$column).") VALUES ('".implode("','",$values)."')";
-            
             return $this->con->exec($sql);
         }
 
-        // MODIFICAR
+        // MODIFICAR 
         public function modify($id, $datos = array()){
             $set=array(); 
             
@@ -39,8 +38,8 @@
                     $set[] = $key."='".$value."'"; 
                 }
             }
-            
-            $sql = "UPDATE ".$this->table." SET ".implode(',',$set).", WHERE id = ".$id;
+
+            $sql = "UPDATE ".$this->table." SET ".implode(',',$set).",WHERE id = ".$id;
             
             return $this->con->exec($sql);
         }

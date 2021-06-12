@@ -11,7 +11,7 @@
         }
 
         // OBTENER TODOS LOS COMENTARIOS
-        public function getComments(){
+        public function getComments(){ 
             $comentarios = $this->commentDao->getAll(); 
             return $comentarios;
         }
@@ -22,4 +22,18 @@
             return $comentarios;
         }
 
+        // GUARDAR COMENTARIO
+        public function saveComment($datos){
+            $this->commentDao->save($datos);
+        }
+
+        // MODIFICAR COMENTARIO
+        public function modifyComment($datos){
+            $this->commentDao->modify($datos);
+        }
+
+        // ELIMINAR COMENTARIO
+        public function deleteComment($datos){
+            $this->commentDao->delete($datos);
+        }
     } 

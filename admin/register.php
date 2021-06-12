@@ -23,12 +23,13 @@
     }
 
     $id = 0;
+
     if(!empty($_GET['edit'])){
-    $id = $_GET['edit'];
+        $id = $_GET['edit'];
     }
 
-    $user = $bUser->getUser($id);''
-?>
+    $user = $bUser->getUser($id);
+?> 
 
 <body class="dark-edition">
     <h3 class="iniSesion">Registrarse</h3>
@@ -43,12 +44,12 @@
             <label for="exampleInputPassword1" class="titulo">Password</label>
             <input type="password" class="form-control" name="password" id="exampleDropdownFormEmail1">
             <label for="exampleInputPassword1" class="titulo">Perfiles</label>
-            <select name="perfiles[]" multiple=multiple class="custom-select form-control-border">
-            <?php foreach($bPerfil->getPerfiles() as $perfil){ ?>
-                <option value="<?php echo $perfil->getId()?>"><?php echo $perfil->getNombre()?></option>
-            <?php }?>
+            <select name="perfiles[]" multiple=multiple class="custom-select form-control-border" id="exampleSelectBorder">
+                <?php foreach($bPerfil->getPerfiles() as $perfil): ?>
+                    <option value="<?php echo $perfil->getId()?>" <?php echo $user->poseePerfil($perfil->getId())?'selected':'' ?>><?php echo $perfil->getNombre()?></option>
+                <?php endforeach; ?>
             </select>
-            <button type="submit" name="userSubmit" class="btn btn-primary loginBtn">Registrar</button>
+                <button type="submit" name="userSubmit" class="btn btn-primary loginBtn">Registrar</button>
         </form>
     </div>
 </body>

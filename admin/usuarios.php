@@ -62,7 +62,7 @@
                                 <?php echo $user->getUser()?>
                               </td>
                               <td>
-                                <?php ?>
+                                <?php echo implode(', ',array_map(function ($p){return $p->getNombre();},$user->getPerfiles()) )  ?>
                               </td>
                               <td>
                                 <a href="register.php?edit=<?php echo $user->getId() ?>"><img class="icons" src="./assets/icon/lapiz.png" alt="Editar"></a>

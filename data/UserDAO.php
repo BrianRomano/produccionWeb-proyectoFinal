@@ -42,7 +42,7 @@
             unset($datos['perfiles']);
             
             $save = parent::save($datos);
-            $id = $this->con->lastInsertId();
+            $id = $this->con->lastInsertId(); 
 
             $sql = '';
             foreach($perfiles as $perfil){

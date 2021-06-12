@@ -15,12 +15,12 @@ class UserBusiness{
         $users = $this->UserDAO->getAll(); 
         return $users;
     }
-
+ 
     // OBTENER UN USUARIO
     public function getUser($id){
         $users = $this->UserDAO->getOne($id); 
         return $users;
-    }
+    } 
 
     // GUARDAR USUARIO
     public function saveUser($datos){
