@@ -1,8 +1,8 @@
-<!-- HEADER  -->
-  <?php include_once('./layouts/header.php') ?>
-
   <?php 
-  
+
+    // HEADER 
+    include_once('./layouts/header.php');
+
     include_once('./../logic/UserBusiness.php');
     
     $bUser = new UserBusiness($con);
@@ -46,11 +46,11 @@
                             Perfil
                           </th>
                           <th>
-                            Acciones
+                            Acción
                           </th>
                         </thead>
                         <tbody>
-                        <?php foreach($bUser->getUsers() as $user){ ?>
+                        <?php foreach($bUser->getUsers() as $user): ?>
                             <tr>
                               <td>
                                 <?php echo $user->getId()?>
@@ -62,19 +62,19 @@
                                 <?php echo $user->getUser()?>
                               </td>
                               <td>
-                                <?php echo implode(', ',array_map(function ($p){return $p->getNombre();},$user->getPerfiles()) )  ?>
+                                <?php echo implode(', ',array_map(function ($p){return $p->getNombre();},$user->getPerfiles())) ?>
                               </td>
                               <td>
                                 <a href="register.php?edit=<?php echo $user->getId() ?>"><img class="icons" src="./assets/icon/lapiz.png" alt="Editar"></a>
                                 <a href="usuarios.php?del=<?php echo $user->getId() ?>"><img class="icons" src="./assets/icon/eliminar.png" alt="Eliminar"></a>
                               </td>
                             </tr>
-                        <?php } ?>
+                        <?php endforeach; ?>
                         </tbody>
                       </table>
                     </div>
                   </div>
-                </div>
+                </div><br>
                 <a href="register.php"><button type="button" class="btn btn-primary col-md-2" style="margin-top:-60px; float:right">Registrar</button></a>
               </div>
             </div>

@@ -5,32 +5,31 @@
   <?php 
 
     include_once('./../logic/ModelsBusiness.php');
+    include_once('./../logic/CategoryBusiness.php');
+
     $ModB = new ModelsBusiness($con);
+    $CatB = new CategoryBusiness($con);
 
-    /*
-    $datos = file_get_contents('./../../../datos/categoria.json');
-    $datosJson = json_decode($datos,true);
+    if(isset($_POST['addModel'])){
 
-    if(isset($_POST['add'])){
-      if(isset($_GET['edit'])){
-          $id = $_GET['edit'];
+      unset($_POST['addModel']);
+       
+      if(!empty($_GET['edit'])){
+        $ModB->modifyModel($_GET['edit'],$_POST);
       }else{
-          $id = date('Ymdhis');
+        $ModB->saveModel($_POST);
       }
 
-      $datosJson[$id] = array('id_categoria'=>$id, 'nombre'=>$_POST['nombre']);
-      $fp = fopen('./../../../datos/categoria.json','w');
-      $datosString = json_encode($datosJson);
-      fwrite($fp,$datosString);
-      fclose($fp);
-      redirect('index.php');
+      redirect('modelos.php');
+    } 
+
+    $id = 0;
+
+    if(!empty($_GET['edit'])){
+        $id = $_GET['edit'];
     }
 
-    if(isset($_GET['edit'])){
-        $dato = $datosJson[$_GET['edit']];
-    }
-    */
-
+    $mod = $ModB->getModels($id);
   ?>
 
 <!-- Formulario de Materiales -->
@@ -39,9 +38,15 @@
       <div id="login" class = "agregar">
           <form action="" method="post">
             <div class="form-group">
-              <label for="exampleDropdownFormEmail1" name="nombreMaterial" class ="titulo">Nueva categorias</label>
+              <label for="exampleDropdownFormEmail1" name="nombreMaterial" class ="titulo">Modelo</label>
               <input type="text" placeholder="Nombre" name="nombre" class="form-control" value="<?php echo isset($dato)?$dato['nombre']:''?>">
-              <input type="submit" class="btn btn-primary loginBtn" name="add" value="Agregar">
+              <label for="exampleDropdownFormEmail1" name="nombreMaterial" class ="titulo">Marca</label>
+              <select name="categoria" multiple=multiple class="custom-select form-control-border" id="exampleSelectBorder">
+                <?php foreach($CatB->getCategories() as $cat): ?>
+                    <option value="<?php echo $cat->getId()?>"><?php echo $cat->getNombre()?></option>
+                <?php endforeach; ?>
+            </select>
+              <input type="submit" class="btn btn-primary loginBtn" name="addModel" value="Agregar">
             </div>
         </form>
       </div>

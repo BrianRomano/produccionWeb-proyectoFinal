@@ -1,7 +1,7 @@
 <!-- HEADER -->
   <?php include_once('./layouts/header.php') ?>
 
-  <?php 
+  <?php  
     
     include_once('./../logic/CategoryBusiness.php');
 
@@ -9,7 +9,7 @@
 
     // ELIMINAR CATEGORIA
     if(isset($_GET['del'])){
-      $Catb->deleteCategorie($_GET['del']);
+      $Catb->deleteCategory($_GET['del']);
       redirect('categorias.php');
     }
     
@@ -44,7 +44,7 @@
                             Activo     
                           </th>
                           <th>
-                            Acciones
+                            Acción
                           </th>
                         </thead>
                         <tbody>
@@ -70,8 +70,6 @@
                             <td>
                               <a href="agregar-categoria.php?edit=<?php echo $cat->getId()?>"><img class="icons" src="./assets/icon/lapiz.png" alt="Editar"></a>
                               <a href="categorias.php?del=<?php echo $cat->getId()?>"><img class="icons" src="./assets/icon/eliminar.png" alt="Eliminar"></a>
-                              <a href="categorias.php?act=<?php echo $cat->getId()?>"><img class="icons" src="./assets/icon/activar.png" alt="Activar"></a>
-                              <a href="categorias.php?des=<?php echo $cat->getId()?>"><img class="icons" src="./assets/icon/desactivar.png" alt="Desactivar"></a>
                             </td>
                           </tr>
                           <?php
@@ -81,7 +79,7 @@
                       </table>
                     </div>
                   </div>
-                </div>
+                </div><br>
                 <a href="agregar-categoria.php"><button type="button" class="btn btn-primary col-md-2" style="margin-top:-60px; float:right">Agregar</button></a> 
               </div>
             </div>

@@ -5,30 +5,30 @@
   <?php 
 
     include_once('./../logic/CategoryBusiness.php');
+
     $Catb = new CategoryBusiness($con);
 
-  /*
-    $datos = file_get_contents('./../../../datos/marca.json');
-    $datosJson = json_decode($datos,true);
+    if(isset($_POST['addCategory'])){
 
-    if(isset($_POST['add'])){
-      if(isset($_GET['edit'])){
-          $id = $_GET['edit'];
+      unset($_POST['addCategory']);
+      
+      if(!empty($_GET['edit'])){
+          $Catb->modifyCategory($_GET['edit'],$_POST);
       }else{
-          $id = date('Ymdhis');
+          $Catb->saveCategory($_POST);
       }
 
-      $datosJson[$id] = array('id_marca'=>$id, 'nombre'=>$_POST['nombre']);
-      $fp = fopen('./../../../datos/marca.json','w');
-      $datosString = json_encode($datosJson);
-      fwrite($fp,$datosString);
-      fclose($fp);
-      redirect('index.php');
+      redirect('categorias.php');
+    } 
+
+    $id = 0;
+
+    if(!empty($_GET['edit'])){
+        $id = $_GET['edit'];
     }
 
-    if(isset($_GET['edit'])){
-        $dato = $datosJson[$_GET['edit']];
-    }*/
+    $cat = $Catb->getCategorie($id);
+      
   ?>
 
 <!-- Formulario de Marcas -->
@@ -39,7 +39,7 @@
             <div class="form-group">
               <label for="exampleDropdownFormEmail1" class ="titulo">Nueva marca</label>
               <input type="text" placeholder="Nombre" name="nombre" class="form-control" value="<?php echo isset($dato)?$dato['nombre']:''?>">
-              <input type="submit" class="btn btn-primary loginBtn" name="add" value="Agregar">
+              <input type="submit" class="btn btn-primary loginBtn" name="addCategory" value="Agregar">
             </div>
         </form>
       </div>

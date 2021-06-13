@@ -5,20 +5,19 @@
   <?php 
 
     include_once('./../logic/ProductoBusiness.php');
-    $ProdB = new ProductoBusiness($con);
+    include('./../logic/CategoryBusiness.php');
+    include('./../logic/ModelsBusiness.php');
 
-    /*
+    $ProdB = new ProductoBusiness($con);
+    $CatB = new CategoryBusiness($con);
+    $ModB = new ModelsBusiness($con);
+
+    // ELIMINAR MODELO
     if(isset($_GET['del'])){
-      $datos = file_get_contents('./../../../datos/producto.json');
-      $datosJson = json_decode($datos,true);
-      unset($datosJson[$_GET['del']]);
-      $fp = fopen('./../../../datos/producto.json','w');
-      $datosString = json_encode($datosJson);
-      fwrite($fp,$datosString);
-      fclose($fp);
-      redirect('index.php');
+      $ProdB->deleteProducto($_GET['del']);
+      redirect('productos.php');
     }
-    */
+
   ?>
 
   <body class="dark-edition">
@@ -59,18 +58,46 @@
                             Destacado
                           </th>
                           <th>
-                            IDCategoria
+                            <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Marca
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="productos.php">Borrar filtro</a>
+                                <?php 
+                                  foreach($CatB->getCategories() as $cat):
+                                ?>
+                                  <a class="dropdown-item" href="productos.php?cat=<?php echo $cat->getId()?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>"><?php echo $cat->getNombre()?></a>
+                                <?php
+                                  endforeach;
+                                ?>
+                              </div>
+                            </div>
                           </th>
                           <th>
-                            IDMarca
+                          <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Modelo
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="productos.php">Borrar filtro</a>
+                                <?php 
+                                  foreach($ModB->getModels() as $mod):
+                                ?>
+                                   <a class="dropdown-item" href="productos.php?mod=<?php echo $mod->getId()?>&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>"><?php echo $mod->getNombre()?></a>
+                                <?php
+                                  endforeach;
+                                ?>
+                              </div>
+                            </div>
                           </th>
                           <th>
-                            Acciones
+                            Acción
                           </th>
                         </thead>
                         <tbody>
                         <?php 
-                          foreach($ProdB->getProductos() as $prod):
+                          foreach($ProdB->getProductos($_GET) as $prod):
                         ?>
                           <tr>
                             <td>
@@ -96,7 +123,7 @@
                             </td>
                             <td>
                             <?php 
-                                if($prod->getDestacado() == 1){
+                                if($prod->getDestacado() == 1){ 
                                   echo 'Si';
                                 } else {
                                   echo 'No';
@@ -104,26 +131,25 @@
                               ?>
                             </td>
                             <td>
-                              <?php echo implode(', ',array_map(function ($c){return $c->getNombre();},$prod->getCategoria()))?>
+                              <?php echo $prod->getCategoria()->getNombre();?>
                             </td>
                             <td>
-                              <?php ?>
+                              <?php echo $prod->getModelo()->getNombre();?>
                             </td>
                             <td>
                               <a href="agregar-productos.php?edit=<?php echo $prod->getId()?>"><img class="icons" src="./assets/icon/lapiz.png" alt="Editar"></a>
                               <a href="productos.php?del=<?php echo $prod->getId()?>"><img class="icons" src="./assets/icon/eliminar.png" alt="Eliminar"></a>
                               <a href="productos.php?act=<?php echo $prod->getId()?>"><img class="icons" src="./assets/icon/activar.png" alt="Activar"></a>
-                              <a href="productos.php?des=<?php echo $prod->getId()?>"><img class="icons" src="./assets/icon/desactivar.png" alt="Desactivar"></a>
                             </td>
                           </tr>
                           <?php 
                             endforeach;
-                          ?>
+                          ?>  
                         </tbody>
                       </table>
                     </div>
                   </div>
-                </div>
+                </div><br>
                 <a href="agregar-productos.php"><button type="button" class="btn btn-primary col-md-2" style="margin-top:-60px; float:right">Agregar</button></a>
               </div>
             </div>
@@ -131,5 +157,10 @@
         </div>
       </div>
     </div>
+
+      <!-- Scripts Bootstrap -->
+      <script src="./assets/bootstrap/jquery/jquery-3.3.1.min.js"></script>
+      <script src="./assets/bootstrap/popper/popper.min.js"></script>
+      <script src="./assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>

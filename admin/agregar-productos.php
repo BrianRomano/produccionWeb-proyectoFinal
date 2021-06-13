@@ -3,10 +3,17 @@
 
 <!-- AGREGAR Productos - EDITAR Productos -->
   <?php 
-    $datos = file_get_contents('./../../../datos/producto.json');
-    $datosJson = json_decode($datos,true);
 
-    if(isset($_POST['add'])){
+    include_once('./../logic/ProductoBusiness.php');
+    include_once('./../logic/ModelsBusiness.php');
+    include_once('./../logic/CategoryBusiness.php');
+
+    $ProdB = new ProductoBusiness($con);
+    $ModB = new ModelsBusiness($con);
+    $CatB = new CategoryBusiness($con);
+
+    if(isset($_POST['addProducto'])){
+      unset($_POST['addProducto']);
 
       //Subir imagen
       if(isset($_FILES['imagen'])){
@@ -17,27 +24,30 @@
         //Condición de tipo de imagen
         if($tipo == "image/jpg" || $tipo == "image/jpeg" || $tipo == "image/png" || $tipo == "image/gif"){
           //Guardar imagen en carpeta imagenes
-          move_uploaded_file($archivo['tmp_name'], './../../../uploads/'.$nombre);
+          move_uploaded_file($archivo['tmp_name'], './../uploads/'.$nombre);
         }
-      }
-
-      if(isset($_GET['edit'])){
-          $id = $_GET['edit'];
+      } 
+        
+      if(!empty($_GET['edit'])){
+        $ProdB->modifyProducto($_GET['edit'],$_POST);
       }else{
-          $id = date('Ymdhis');
+
+        $_POST['activo'] = 0;
+        $_POST['destacado'] = 0;
+        $_POST['imagen'] = $nombre;
+
+        $ProdB->saveProducto($_POST);
       }
 
-      $datosJson[$id] = array('id_producto'=>$id, 'nombre'=>$_POST['nombre'], 'precio'=>$_POST['precio'], 'imagen'=>$_FILES['imagen']['name'], 'descripcion'=>$_POST['descripcion'], 'activo'=>$_POST['activo'], 'destacado'=>$_POST['destacado'], 'id_categoria'=>$_POST['material'], 'id_marca'=>$_POST['marca']);
-      $fp = fopen('./../../../datos/producto.json','w');
-      $datosString = json_encode($datosJson);
-      fwrite($fp,$datosString);
-      fclose($fp);
-      redirect('index.php');
+      redirect('productos.php');
+    } 
+
+    $id = 0;
+
+    if(!empty($_GET['edit'])){
+        $id = $_GET['edit'];
     }
 
-    if(isset($_GET['edit'])){
-        $dato = $datosJson[$_GET['edit']];
-    }
   ?>
 
   <body class="dark-edition">
@@ -45,53 +55,26 @@
     <div id="login" class = "agregar agregarProducto">
 
       <form action="" method="post" enctype="multipart/form-data">
-
-        <div class="form-group">
-
-          <label for="exampleDropdownFormEmail1" name="nombreMaterial" class ="titulo">Nuevo producto</label>
-          <input type="text" placeholder="Nombre" name="nombre" class="form-control" value="<?php echo isset($dato)?$dato['nombre']:''?>">
-          <input type="text" placeholder="Precio" name="precio" class="form-control" value="<?php echo isset($dato)?$dato['precio']:''?>">
-          <input type="text" placeholder="Descripción" name="descripcion" class="form-control" value="<?php echo isset($dato)?$dato['descripcion']:''?>">
-          
-          <select class="form-control" name="material">
-            <option selected="true" disabled="disabled">Material</option>
-            <?php 
-              $datos = file_get_contents("./../../../datos/categoria.json");
-              $datosJson = json_decode($datos, true);
-              foreach($datosJson as $cat):
-            ?>
-              <option class="opciones" value="<?php echo $cat['id_categoria']?>"><?php echo $cat['nombre']?></option>
-            <?php 
-              endforeach;
-            ?>
+          <label for="exampleDropdownFormEmail1" class ="titulo">Producto</label>
+          <input type="text" placeholder="Nombre" name="titulo" class="form-control">
+          <input type="text" placeholder="Precio" name="precio" class="form-control">
+          <input type="text" placeholder="Descripción" name="descripcion" class="form-control">
+          <label for="exampleDropdownFormEmail1" class ="titulo">Marca</label>
+          <select name="categoria" multiple=multiple class="custom-select form-control-border" id="exampleSelectBorder">
+              <?php foreach($CatB->getCategories() as $cat): ?>
+                  <option value="<?php echo $cat->getId()?>"><?php echo $cat->getNombre()?></option>
+              <?php endforeach; ?>
           </select>
 
-          <select class="form-control" name="marca">
-            <option selected="true" disabled="disabled">Marca</option>
-            <?php 
-              $datos = file_get_contents("./../../../datos/marca.json");
-              $datosJson = json_decode($datos, true);
-              foreach($datosJson as $marc):
-            ?>
-              <option class="opciones" value="<?php echo $marc['id_marca']?>"><?php echo $marc['nombre']?></option>
-            <?php 
-              endforeach;
-            ?>
+          <label for="exampleDropdownFormEmail1" class ="titulo">Modelo</label>
+          <select name="modelo" multiple=multiple class="custom-select form-control-border" id="exampleSelectBorder">
+              <?php foreach($ModB->getModels() as $mod): ?>
+                  <option value="<?php echo $mod->getId()?>"><?php echo $mod->getNombre()?></option>
+              <?php endforeach; ?>
           </select>
 
-          <div id="check">
-            <input type="checkbox" class="form-check-input" name="activo">
-            <label class="form-check-label">Disponible</label><br>
-            <input type="checkbox" class="form-check-input" name="destacado">
-            <label class="form-check-label">Destacado</label>
-          </div>
-
-          <div class="form-group">
             <input type="file" name="imagen" class="form-control-file" id="exampleFormControlFile1">
-            <input type="submit" class="btn btn-primary loginBtn2" name="add" value="Agregar">
-          </div>
-
-        </div>
+            <input type="submit" class="btn btn-primary loginBtn2" name="addProducto" value="Agregar">
       </form>
     </div>
   </body>

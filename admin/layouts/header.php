@@ -8,21 +8,22 @@
     include_once('./../helpers/conecction.php'); 
     include_once('./../helpers/redirect.php'); 
     include_once('./../logic/LoginBusiness.php');
-    
+    include_once('./../logic/PerfilBusiness.php');
+
     $loginB = new LoginBusiness($con);
-    
+
     if(isset($_POST['login'])){
         if(!$loginB->login($_POST)){
-        redirect('login.php?errAth');
-        die();
+            redirect('login.php?errAth');
+            die();
         }
     }
     
     if(isset($_GET['logout'])){
         $loginB->logout();
     }
-    
-    if (!$loginB->isLoged()){
+      
+    if (!$loginB->isLoged()){ 
         redirect('login.php');
         die();
     }

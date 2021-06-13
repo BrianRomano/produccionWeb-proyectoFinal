@@ -4,7 +4,7 @@ require_once('./../data/UserDAO.php');
 
 class UserBusiness{
 
-    protected $UserDAO;
+    protected $UserDAO; 
 
     function __construct($con){
         $this->UserDAO = new UserDAO($con);

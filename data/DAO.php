@@ -40,7 +40,7 @@
             }
 
             $sql = "UPDATE ".$this->table." SET ".implode(',',$set).",WHERE id = ".$id;
-            
+
             return $this->con->exec($sql);
         }
 

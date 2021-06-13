@@ -15,7 +15,7 @@
 
     // COMENTARIOS  
     $ComB = new CommentBusiness($con);
-    $com = $ComB->getComments();
+    $com = $ComB->getComments(); 
 
     // GUARDAR COMENTARIO
     if(isset($_POST['comentar'])){
@@ -28,7 +28,7 @@
         $ComB->saveComment($_POST);
     }
 
-?>
+?> 
 
     <div id="contenedor"> 
 

@@ -24,13 +24,13 @@
                 ?>
                 <div> 
                     <li> 
-                        <h5><a href="productos.php?cat=<?php echo $cat->getId()?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>"><?php echo $cat->getNombre()?></a></h5><br>
+                        <h5><a href="productos.php?cat=<?php echo $cat->getId()?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ' '?>"><?php echo $cat->getNombre()?></a></h5><br>
                         <?php 
                             foreach($modB->getModels() as $mod):
                                 if(isset($_GET['cat'])):
-                                    if($mod->getCategoria() == $cat->getId()):
+                                    if($mod->getCategoria()->getId() == $cat->getId()):
                         ?>
-                        <a href="productos.php?mod=<?php echo $mod->getId()?>&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>"><?php echo $mod->getNombre()?></a><br>
+                        <a href="productos.php?mod=<?php echo $mod->getId()?>&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ' '?>"><?php echo $mod->getNombre()?></a><br>
                         <?php 
                                     endif;
                                 endif;
@@ -63,7 +63,7 @@
                     <a class="dropdown-item" href="productos.php?dest=1&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>">Destacados</a>
                     <a class="dropdown-item" href="productos.php?asc=asc&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>">A-Z</a>
                     <a class="dropdown-item" href="productos.php?desc=desc&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>">Z-A</a>
-                    <a class="dropdown-item" href="productos.php?rank&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>">Mejor calificados</a>
+                    <a class="dropdown-item" href="productos.php?rank=rank&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>">Mejor calificados</a>
                     <a class="dropdown-item borrarFiltrado" href="productos.php">Borrar filtros</a>
                 </div>
             </div>

@@ -1,19 +1,18 @@
 <!-- HEADER  -->
   <?php include_once('./layouts/header.php') ?>
 
-<!-- ELIMINAR MODELO -->
   <?php 
 
     include_once('./../logic/ModelsBusiness.php');
     $ModB = new ModelsBusiness($con);
 
-    // ELIMINAR CATEGORIA
+    // ELIMINAR MODELO
     if(isset($_GET['del'])){
       $ModB->deleteModel($_GET['del']);
       redirect('modelos.php');
     }
 
-  ?>
+  ?> 
 
   <body class="dark-edition">
 
@@ -44,7 +43,10 @@
                             Activo
                           </th>
                           <th>
-                            Acciones
+                            Marca
+                          </th>
+                          <th>
+                            Acción
                           </th>
                         </thead>
                         <tbody>
@@ -68,10 +70,11 @@
                             ?>
                             </td>
                             <td>
+                              <?php echo $mod->getCategoria()->getNombre();?>
+                            </td>
+                            <td>
                               <a href="agregar-modelo.php?edit=<?php echo $mod->getId()?>"><img class="icons" src="./assets/icon/lapiz.png" alt="Editar"></a>
                               <a href="modelos.php?del=<?php echo $mod->getId()?>"><img class="icons" src="./assets/icon/eliminar.png" alt="Eliminar"></a>
-                              <a href="modelos.php?act=<?php echo $mod->getId()?>"><img class="icons" src="./assets/icon/activar.png" alt="Activar"></a>
-                              <a href="modelos.php?des=<?php echo $mod->getId()?>"><img class="icons" src="./assets/icon/desactivar.png" alt="Desactivar"></a>
                             </td>
                           </tr>
                         <?php 
@@ -81,7 +84,7 @@
                       </table>
                     </div>
                   </div>
-                </div>
+                </div><br>
                 <a href="agregar-modelo.php"><button type="button" class="btn btn-primary col-md-2" style="margin-top:-60px; float:right">Agregar</button></a>
               </div>
             </div>

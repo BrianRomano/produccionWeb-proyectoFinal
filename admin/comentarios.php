@@ -32,9 +32,6 @@
                             ID
                           </th>
                           <th>
-                            Email
-                          </th>
-                          <th>
                             Comentario
                           </th>
                           <th>
@@ -44,16 +41,22 @@
                             Fecha
                           </th>
                           <th>
-                            ID Producto
+                            Producto
                           </th>
                           <th>
-                            IP
+                            <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Activo
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="comentarios.php">Borrar filtro</a>
+                              <a class="dropdown-item" href="comentarios.php?activo=1">Si</a>
+                              <a class="dropdown-item" href="comentarios.php?activo=0">No</a>
+                            </div>
+                          </div>
                           </th>
                           <th>
-                            Activo
-                          </th>
-                          <th>
-                            Acciones
+                            Acción
                           </th>
                         </thead>
                         <!-- Fin de Columnas -->
@@ -61,27 +64,25 @@
                         <!-- Inicio de Filas -->
                         <tbody>
                           <?php 
-
                               foreach($ComB->getComments() as $com):
                                 $imprimir = true;
 
                                 //Comprobar si existe un filtro
-                                if(isset($_GET['id'])){
+                                if(isset($_GET['activo'])){
                                   $imprimir = true;
-
+                                  
                                   //Filtrar
-                                  if($com->getId() != $_GET['id']){
+                                  if($com->getActivo() != $_GET['activo']){
                                     $imprimir = false;
                                   }
+
                                 }
+
                                 if($imprimir):
                           ?>
                             <tr>
                               <td>
-                                <?php echo $com-getId()?>
-                              </td>
-                              <td>
-                                <?php echo $com->getEmail()?>
+                                <?php echo $com->getId()?>
                               </td>
                               <td>
                                 <?php echo $com->getComentario()?>
@@ -93,10 +94,7 @@
                                 <?php echo $com->getFecha()?>
                               </td>
                               <td>
-                                <?php echo $com->getProducto()?>
-                              </td>
-                              <td>
-                                <?php echo $com->getIp()?>
+                                <?php echo $com->getProducto()->getTitulo()?>
                               </td>
                               <td>
                                 <?php 
@@ -106,6 +104,9 @@
                                     echo 'No';
                                   }
                                 ?>
+                              </td>
+                              <td>
+                                <a href="comentarios.php?act=<?php echo $com->getId()?>"><img class="icons" src="./assets/icon/activar.png" alt="Activar"></a>
                               </td>
                             </tr>
                           <?php 

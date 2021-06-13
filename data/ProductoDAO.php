@@ -45,7 +45,7 @@
                 $sqlWhereStr .= ' AND modelo = '.$where['mod'];
             }
 
-            if(!empty($where['dest'])){
+            if(!empty($where['dest'])){ 
                 $sqlWhereStr .= ' AND destacado = '.$where['dest'];
             }
 
@@ -54,10 +54,6 @@
             }
 
             if(!empty($where['desc'])){
-                $sqlOrderBy .= $where['desc'];
-            }
-
-            if(!empty($where['rank'])){
                 $sqlOrderBy .= $where['desc'];
             }
 
@@ -80,6 +76,24 @@
             }
 
             return $resultado;
+        }
+
+        // GUARDAR PRODUCTO
+        public function save($datos = array()){
+            $save = parent::save($datos);
+            return $save;
+        }  
+
+        // MODIFICAR PRODUCTO
+        public function modify($id, $datos = array()){
+            $modify = parent::modify($id, $datos);
+            return $modify;
+        }
+
+        // ELIMINAR PRODUCTO
+        public function delete($id){
+            $delete = parent::delete($id); 
+            return $delete;
         }
 
     }

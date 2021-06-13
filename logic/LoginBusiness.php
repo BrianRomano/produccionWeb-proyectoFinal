@@ -46,7 +46,7 @@
         // COMPROBAR LOGEO
         function isLoged(){
             if(!empty($_SESSION['user']['id'])){
-                return true;
+                return true; 
             }
             return false;
         }

@@ -25,6 +25,24 @@
             
             return $resultado;
         }
+
+        // GUARDAR CATEGORIA
+        public function save($datos = array()){
+            $save = parent::save($datos);
+            return $save;
+        }  
+
+        // MODIFICAR CATEGORIA
+        public function modify($id, $datos = array()){
+            $modify = parent::modify($id, $datos);
+            return $modify;
+        }
+
+        // ELIMINAR CATEGORIA
+        public function delete($id){
+            $delete = parent::delete($id); 
+            return $delete;
+        }
         
     }
 

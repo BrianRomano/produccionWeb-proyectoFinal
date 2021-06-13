@@ -22,4 +22,19 @@
             return $categorias;
         }
 
+        // GUARDAR CATEGORIA
+        public function saveCategory($datos){
+            $this->CategoryDao->save($datos);
+        }
+
+        // MODIFICAR CATEGORIA
+        public function modifyCategory($datos){
+            $this->CategoryDao->modify($datos);
+        }
+
+        // ELIMINAR CATEGORIA
+        public function deleteCategory($datos){
+            $this->CategoryDao->delete($datos);
+        }
+
     }

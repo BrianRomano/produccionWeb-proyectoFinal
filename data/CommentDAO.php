@@ -18,21 +18,22 @@
         public function getOne($id){
             $sql = "SELECT id,email,comentario,rank,fecha,producto,ip,activo FROM $this->table WHERE id = $id";
             $resultado = $this->con->query($sql,PDO::FETCH_CLASS,'CommentEntity')->fetch();
+
             $resultado->setProducto($this->ProductoDao->getOne($resultado->getProducto()));
+
             return $resultado;
         }
     
         // OBTENER TODOS LOS COMENTARIOS
         public function getAll($where = array()){
-            $sql = "SELECT id,email,comentario,rank,fecha,producto,ip,activo FROM $this->table";
-            $resultado = $this->con->query($sql,PDO::FETCH_CLASS,'CommentEntity')->fetchAll();
-
-            return $resultado;
-
             $sqlWhereStr = ' WHERE 1=1 ';
 
             if(!empty($where['prod'])){
                 $sqlWhereStr .= ' AND producto = '.$where['prod'];
+            }
+
+            if(!empty($where['activo'])){
+                $sqlWhereStr .= ' AND activo = '.$where['activo'];
             }
 
             $sql = "SELECT  id,
@@ -66,7 +67,7 @@
             return $modify;
         }
 
-        // ELIMINAR COMENTARIO
+        // ELIMINAR COMENTARIO 
         public function delete($id){
             $delete = parent::delete($id); 
             return $delete;

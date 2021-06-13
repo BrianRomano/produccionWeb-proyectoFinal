@@ -22,4 +22,19 @@ class ProductoBusiness{
         return $productos;
     }
 
+    // GUARDAR PRODUCTO
+    public function saveProducto($datos){
+        $this->ProductoDao->save($datos);
+    }
+
+    // MODIFICAR PRODUCTO
+    public function modifyProducto($datos){
+        $this->ProductoDao->modify($datos);
+    }
+
+    // ELIMINAR PRODUCTO
+    public function deleteProducto($datos){
+        $this->ProductoDao->delete($datos);
+    }
+
 }

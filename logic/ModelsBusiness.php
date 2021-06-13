@@ -22,4 +22,19 @@
             return $modelos;
         }
 
+        // GUARDAR MODELO
+        public function saveModel($datos){
+            $this->ModelsDao->save($datos);
+        }
+
+        // MODIFICAR MODELO
+        public function modifyModel($datos){
+            $this->ModelsDao->modify($datos);
+        }
+
+        // ELIMINAR MODELO
+        public function deleteModel($datos){
+            $this->ModelsDao->delete($datos);
+        }
+
     }

@@ -31,7 +31,7 @@
     $user = $bUser->getUser($id);
 ?> 
 
-<body class="dark-edition">
+<body class="dark-edition"> 
     <h3 class="iniSesion">Registrarse</h3>
     <div id="login">
         <form action="" method="post">

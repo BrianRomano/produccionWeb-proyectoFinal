@@ -27,21 +27,24 @@
 
         // OBTENER TODOS LOS PERFILES POR USUARIO
         public function getAllByUser($userId){
+
             $sql = "SELECT id, nombre  
                     FROM perfiles
                     INNER JOIN user_perfil ON user_perfil.perfil = perfiles.id
                     WHERE user = ".$userId ;  
+
             $resultado = $this->con->query($sql,PDO::FETCH_CLASS,'PerfilEntity')->fetchAll();
+
             foreach($resultado as $index=>$perfil){
                 $resultado[$index]->setPermisos($this->permisoDAO->getAllByPerfil($perfil->getId()));
             }
-            return $resultado;
 
+            return $resultado;
         }
         
         // OBTENER UN PERFIL
         public function getOne($id){
-            $sql = "SELECT nombre, active FROM perfiles WHERE id = ".$id;
+            $sql = "SELECT nombre FROM perfiles WHERE id = ".$id;
             $resultado = $this->con->query($sql,PDO::FETCH_CLASS,'PerfilEntity')->fetch();
             $resultado->setPermisos($this->permisoDAO->getAllByPerfil($id));
 
