@@ -48,6 +48,7 @@
         $id = $_GET['edit'];
     }
 
+    if($permiso == 'adm' || $permiso == 'prod'):
   ?>
 
   <body class="dark-edition">
@@ -78,4 +79,5 @@
       </form>
     </div>
   </body>
+  <?php endif; ?>
 </html>

@@ -13,6 +13,7 @@
       redirect('categorias.php');
     }
     
+    if($permiso == 'adm' || $permiso == 'cat'):
   ?>
 
   <body class="dark-edition">
@@ -88,4 +89,7 @@
       </div>
     </div>
   </body>
+  <?php 
+    endif;
+  ?>
 </html>

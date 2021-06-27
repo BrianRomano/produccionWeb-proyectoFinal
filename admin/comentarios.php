@@ -7,6 +7,8 @@
   include_once('./../logic/ProductoBusiness.php');
 
   $ComB = new CommentBusiness($con);
+
+  if($permiso == 'adm' || $permiso == 'com'):
 ?>
 
   <body class="dark-edition">
@@ -130,4 +132,5 @@
       <script src="./assets/bootstrap/popper/popper.min.js"></script>
       <script src="./assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
   </body>
+  <?php endif; ?>
 </html>

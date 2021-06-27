@@ -28,9 +28,9 @@
     }
 
     $cat = $Catb->getCategorie($id);
-      
-  ?>
 
+    if($permiso == 'adm' || $permiso == 'cat'):      
+  ?>
 <!-- Formulario de Marcas -->
   <body class="dark-edition">
   <h3 class="iniSesion">Marcas</h3><br><br>
@@ -44,4 +44,5 @@
         </form>
       </div>
   </body>
+  <?php endif; ?>
 </html>

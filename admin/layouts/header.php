@@ -27,6 +27,21 @@
         redirect('login.php');
         die();
     }
+
+    // GUARDAR PERMISO DEL USUARIO LOGEADO 
+
+    $permiso = '';
+
+    if(isset($_SESSION['user']['permisos']['module']['adm'])){
+        $permiso = $_SESSION['user']['permisos']['module']['adm'];
+    } else if(isset($_SESSION['user']['permisos']['module']['cat'])){
+        $permiso = $_SESSION['user']['permisos']['module']['cat'];
+    } else if(isset($_SESSION['user']['permisos']['module']['prod'])){
+        $permiso = $_SESSION['user']['permisos']['module']['prod'];
+    } else {
+        $permiso = $_SESSION['user']['permisos']['module']['com'];
+    }
+
 ?>
 
 <!Doctype html>

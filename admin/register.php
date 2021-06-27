@@ -29,6 +29,8 @@
     }
 
     $user = $bUser->getUser($id);
+
+    if($permiso == 'adm'):
 ?> 
 
 <body class="dark-edition"> 
@@ -53,4 +55,5 @@
         </form>
     </div>
 </body>
+    <?php endif; ?>
 </html>

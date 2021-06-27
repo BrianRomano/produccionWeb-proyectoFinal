@@ -30,6 +30,8 @@
     }
 
     $mod = $ModB->getModels($id);
+
+    if($permiso == 'adm' || $permiso == 'cat'):
   ?>
 
 <!-- Formulario de Materiales -->
@@ -51,4 +53,5 @@
         </form>
       </div>
   </body>
+  <?php endif; ?>
 </html>

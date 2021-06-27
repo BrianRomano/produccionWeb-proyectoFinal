@@ -12,6 +12,7 @@
       redirect('usuarios.php');
     }
 
+    if($permiso == 'adm'):
   ?>
 
   <body class="dark-edition">
@@ -83,4 +84,5 @@
       </div>
     </div>
   </body>
+  <?php endif; ?>
 </html>

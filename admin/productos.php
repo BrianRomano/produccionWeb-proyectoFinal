@@ -18,6 +18,7 @@
       redirect('productos.php');
     }
 
+    if($permiso == 'adm' || $permiso == 'prod'):
   ?>
 
   <body class="dark-edition">
@@ -163,4 +164,5 @@
       <script src="./assets/bootstrap/popper/popper.min.js"></script>
       <script src="./assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
   </body>
+  <?php endif; ?>
 </html>

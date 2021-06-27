@@ -13,36 +13,51 @@
                         <p>Inicio</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="usuarios.php">
-                        <i class="material-icons">content_paste</i>
-                        <p>Usuarios</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="categorias.php">
-                        <i class="material-icons">content_paste</i>
-                        <p>Marcas</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="modelos.php">
-                        <i class="material-icons">content_paste</i>
-                        <p>Modelos</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="productos.php">
-                        <i class="material-icons">content_paste</i>
-                        <p>Productos</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="comentarios.php">
-                        <i class="material-icons">library_books</i>
-                        <p>Comentarios</p>
-                    </a>
-                </li>
+                <?php if($permiso == 'adm'): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="usuarios.php">
+                            <i class="material-icons">content_paste</i>
+                            <p>Usuarios</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if($permiso == 'adm' || $permiso == 'cat'): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="categorias.php">
+                            <i class="material-icons">content_paste</i>
+                            <p>Marcas</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if($permiso == 'adm' || $permiso == 'cat'): ?> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="modelos.php">
+                            <i class="material-icons">content_paste</i>
+                            <p>Modelos</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if($permiso == 'adm' || $permiso == 'prod'): ?> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="productos.php">
+                            <i class="material-icons">content_paste</i>
+                            <p>Productos</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if($permiso == 'adm' || $permiso == 'com'): ?> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="comentarios.php">
+                            <i class="material-icons">library_books</i>
+                            <p>Comentarios</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
                 <a href="index.php?logout"><button type="submit" class="btn btn-primary sesionBtn">Cerrar sesión</button></a>
             </ul>
         </div>
