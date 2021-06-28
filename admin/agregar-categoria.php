@@ -1,19 +1,19 @@
 <!-- HEADER -->
 <?php include_once('./layouts/header.php') ?> 
 
-<!-- AGREGAR Producto - EDITAR Producto -->
+<!-- AGREGAR PRODUCTO - EDITAR PRODUCTO -->
   <?php 
 
     include_once('./../logic/CategoryBusiness.php');
 
-    $Catb = new CategoryBusiness($con);
+    $Catb = new CategoryBusiness($con); 
 
     if(isset($_POST['addCategory'])){
 
       unset($_POST['addCategory']);
       
       if(!empty($_GET['edit'])){
-          $Catb->modifyCategory($_GET['edit'],$_POST);
+          $Catb->modifyCategory($_GET['edit'], $_POST);
       }else{
           $Catb->saveCategory($_POST);
       }
@@ -21,7 +21,7 @@
       redirect('categorias.php');
     } 
 
-    $id = 0;
+    $id = 0; 
 
     if(!empty($_GET['edit'])){
         $id = $_GET['edit'];

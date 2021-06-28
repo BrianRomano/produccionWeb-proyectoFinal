@@ -18,7 +18,7 @@
 
   <body class="dark-edition">
 
-    <!-- ASIDE  -->
+    <!-- ASIDE  --> 
       <?php include_once('./layouts/aside.php')?> 
 
       <!-- MARCAS -->
@@ -64,7 +64,7 @@
                                   if($cat->getActivo() == 1){
                                     echo 'Si';
                                   } else {
-                                    echo 'No';
+                                    echo 'No'; 
                                   }
                               ?>
                             </td>

@@ -28,8 +28,8 @@
         }
 
         // MODIFICAR CATEGORIA
-        public function modifyCategory($datos){
-            $this->CategoryDao->modify($datos);
+        public function modifyCategory($id, $datos){
+            $this->CategoryDao->modify($id, $datos);
         }
 
         // ELIMINAR CATEGORIA

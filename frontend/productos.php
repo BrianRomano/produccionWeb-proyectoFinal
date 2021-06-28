@@ -63,7 +63,7 @@
                     <a class="dropdown-item" href="productos.php?dest=1&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>">Destacados</a>
                     <a class="dropdown-item" href="productos.php?asc=asc&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>">A-Z</a>
                     <a class="dropdown-item" href="productos.php?desc=desc&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>">Z-A</a>
-                    <a class="dropdown-item" href="productos.php?rank=rank&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>">Mejor calificados</a>
+                    <a class="dropdown-item" href="productos.php?rank&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ''?>&mod=<?php echo isset($_GET['mod']) ? $_GET['mod'] : ''?>">Mejor calificados</a>
                     <a class="dropdown-item borrarFiltrado" href="productos.php">Borrar filtros</a>
                 </div>
             </div>

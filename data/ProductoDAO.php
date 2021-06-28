@@ -57,6 +57,10 @@
                 $sqlOrderBy .= $where['desc'];
             }
 
+            if(!empty($where['rank'])){
+                return getAllByRank();
+            }
+
             $sql = "SELECT  id,
                             titulo,
                             descripcion,
@@ -67,6 +71,30 @@
                             categoria, 
                             modelo
                     FROM $this->table $sqlWhereStr ORDER BY $sqlOrderBy";
+
+            $resultado = $this->con->query($sql,PDO::FETCH_CLASS,'ProductoEntity')->fetchAll();
+
+            foreach($resultado as $index=>$res){
+                $resultado[$index]->setCategoria($this->CategoryDao->getOne($res->getCategoria()));
+                $resultado[$index]->setModelo($this->ModelsDao->getOne($res->getModelo()));
+            }
+
+            return $resultado;
+        }
+
+        // OBTENER TODOS LOS PRODUCTOS SEGUN RANK
+        public function getAllByRank(){
+
+            $sql = "SELECT  id,
+                            titulo,
+                            descripcion,
+                            precio,
+                            imagen,  
+                            activo,
+                            destacado,
+                            categoria, 
+                            modelo
+                            FROM $this->table INNER JOIN comments ON comments.producto = productos.id ORDER BY rank ASC";
 
             $resultado = $this->con->query($sql,PDO::FETCH_CLASS,'ProductoEntity')->fetchAll();
 

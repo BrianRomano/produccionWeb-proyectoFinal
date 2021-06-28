@@ -31,6 +31,7 @@
 
         // MODIFICAR 
         public function modify($id, $datos = array()){
+
             $set=array(); 
             
             foreach($datos as $key=>$value){
@@ -39,7 +40,7 @@
                 }
             }
 
-            $sql = "UPDATE ".$this->table." SET ".implode(',',$set).",WHERE id = ".$id;
+            $sql = "UPDATE ".$this->table." SET ".implode(',',$set)." WHERE id = ".$id;
 
             return $this->con->exec($sql);
         }
