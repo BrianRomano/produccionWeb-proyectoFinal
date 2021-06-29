@@ -13,7 +13,7 @@
 
         unset($_POST['userSubmit']);
         
-        if(!empty($_GET['edit'])){
+        if(!empty($_GET['edit'])){ 
             $bUser->modifyUser($_GET['edit'],$_POST);
         }else{
             $bUser->saveUser($_POST);

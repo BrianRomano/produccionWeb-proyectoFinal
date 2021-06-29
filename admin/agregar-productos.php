@@ -17,6 +17,7 @@
 
       //Subir imagen
       if(isset($_FILES['imagen'])){
+        
         $archivo = $_FILES["imagen"];
         $nombre = $archivo['name'];
         $tipo = $archivo["type"];
@@ -26,16 +27,26 @@
           //Guardar imagen en carpeta imagenes
           move_uploaded_file($archivo['tmp_name'], './../uploads/'.$nombre);
         }
+
       } 
+
+      $_POST['imagen'] = $nombre;
         
+      if($_POST['activo']){
+        $_POST['activo'] = '1';
+      } else{
+        $_POST['activo'] = '0';
+      }
+
+      if($_POST['destacado']){
+        $_POST['destacado'] = '1';
+      } else{
+        $_POST['destacado'] = '0';
+      }
+    
       if(!empty($_GET['edit'])){
         $ProdB->modifyProducto($_GET['edit'],$_POST);
       }else{
-
-        $_POST['activo'] = 0;
-        $_POST['destacado'] = 0;
-        $_POST['imagen'] = $nombre;
-
         $ProdB->saveProducto($_POST);
       }
 
@@ -73,9 +84,12 @@
                   <option value="<?php echo $mod->getId()?>"><?php echo $mod->getNombre()?></option>
               <?php endforeach; ?>
           </select>
-
-            <input type="file" name="imagen" class="form-control-file" id="exampleFormControlFile1">
-            <input type="submit" class="btn btn-primary loginBtn2" name="addProducto" value="Agregar">
+          <label for="destacado">Destacado</label>
+          <input type="checkbox" value="Destacado" name="destacado"><br>
+          <label for="activo">Activar</label>
+          <input type="checkbox" value="Activo" name="activo"><br>
+          <input type="file" name="imagen" class="form-control-file" id="exampleFormControlFile1">
+          <input type="submit" class="btn btn-primary loginBtn2" name="addProducto" value="Agregar">
       </form>
     </div>
   </body>

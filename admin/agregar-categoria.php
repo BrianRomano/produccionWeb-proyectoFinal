@@ -11,11 +11,17 @@
     if(isset($_POST['addCategory'])){
 
       unset($_POST['addCategory']);
+
+      if($_POST['activo']){
+        $_POST['activo'] = '1';
+      } else{
+        $_POST['activo'] = '0';
+      }
       
       if(!empty($_GET['edit'])){
           $Catb->modifyCategory($_GET['edit'], $_POST);
       }else{
-          $Catb->saveCategory($_POST);
+          $Catb->saveCategory($_POST);          
       }
 
       redirect('categorias.php');
@@ -35,12 +41,14 @@
   <body class="dark-edition">
   <h3 class="iniSesion">Marcas</h3><br><br>
       <div id="login" class = "agregar">
-      <form action="" method="post">
-            <div class="form-group">
-              <label for="exampleDropdownFormEmail1" class ="titulo">Nueva marca</label>
-              <input type="text" placeholder="Nombre" name="nombre" class="form-control" value="<?php echo isset($dato)?$dato['nombre']:''?>">
-              <input type="submit" class="btn btn-primary loginBtn" name="addCategory" value="Agregar">
-            </div>
+        <form action="" method="post">
+              <div class="form-group">
+                <label for="exampleDropdownFormEmail1" class ="titulo">Nueva marca</label>
+                <input type="text" placeholder="Nombre" name="nombre" class="form-control" value="<?php echo isset($dato)?$dato['nombre']:''?>">
+                <label for="activo">Activar</label>
+                <input type="checkbox" value="Activo" name="activo"><br>
+                <input type="submit" class="btn btn-primary loginBtn" name="addCategory" value="Agregar">
+              </div>
         </form>
       </div>
   </body>

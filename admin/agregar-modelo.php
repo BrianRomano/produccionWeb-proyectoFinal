@@ -13,7 +13,13 @@
     if(isset($_POST['addModel'])){
 
       unset($_POST['addModel']);
-       
+
+      if($_POST['activo']){
+        $_POST['activo'] = '1';
+      } else{
+        $_POST['activo'] = '0';
+      }
+      
       if(!empty($_GET['edit'])){
         $ModB->modifyModel($_GET['edit'],$_POST);
       }else{
@@ -47,7 +53,9 @@
                 <?php foreach($CatB->getCategories() as $cat): ?>
                     <option value="<?php echo $cat->getId()?>"><?php echo $cat->getNombre()?></option>
                 <?php endforeach; ?>
-            </select>
+              </select>
+              <label for="activo">Activar</label>
+              <input type="checkbox" value="Activo" name="activo"><br>
               <input type="submit" class="btn btn-primary loginBtn" name="addModel" value="Agregar">
             </div>
         </form>

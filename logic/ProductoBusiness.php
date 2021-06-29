@@ -28,8 +28,8 @@ class ProductoBusiness{
     }
 
     // MODIFICAR PRODUCTO
-    public function modifyProducto($datos){
-        $this->ProductoDao->modify($datos);
+    public function modifyProducto($id, $datos){
+        $this->ProductoDao->modify($id, $datos);
     }
 
     // ELIMINAR PRODUCTO

@@ -8,7 +8,6 @@
     include_once('./../helpers/conecction.php'); 
     include_once('./../helpers/redirect.php'); 
     include_once('./../logic/LoginBusiness.php');
-    include_once('./../logic/PerfilBusiness.php');
 
     $loginB = new LoginBusiness($con);
 

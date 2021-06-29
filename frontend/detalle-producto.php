@@ -23,7 +23,7 @@
 
         $_POST['producto'] = $_GET['id'];
         $_POST['ip'] = $_SERVER['REMOTE_ADDR'];
-        $_POST['activo'] = 0;
+        $_POST['activo'] = '0';
 
         $ComB->saveComment($_POST);
     }
@@ -78,7 +78,7 @@
                 foreach($ComB->getComments() as $com):
                     //Mostrar comentarios correspondiente al producto
                     if($com->getProducto() == $_GET['id']):
-                        if($com->getActivo() == 1):
+                        if($com->getActivo() == '1'):
             ?>
                 <article>
                     <p class = "nombreUsuario">

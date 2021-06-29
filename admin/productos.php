@@ -140,7 +140,6 @@
                             <td>
                               <a href="agregar-productos.php?edit=<?php echo $prod->getId()?>"><img class="icons" src="./assets/icon/lapiz.png" alt="Editar"></a>
                               <a href="productos.php?del=<?php echo $prod->getId()?>"><img class="icons" src="./assets/icon/eliminar.png" alt="Eliminar"></a>
-                              <a href="productos.php?act=<?php echo $prod->getId()?>"><img class="icons" src="./assets/icon/activar.png" alt="Activar"></a>
                             </td>
                           </tr>
                           <?php 

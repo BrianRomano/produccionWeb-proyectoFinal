@@ -5,7 +5,7 @@
     class PerfilBusiness{
 
         protected $PerfilDAO;
-
+ 
         function __construct($con){
             $this->PerfilDAO = new PerfilDAO($con);
         }

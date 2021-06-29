@@ -28,8 +28,8 @@
         }
 
         // MODIFICAR MODELO
-        public function modifyModel($datos){
-            $this->ModelsDao->modify($datos);
+        public function modifyModel($id,$datos){
+            $this->ModelsDao->modify($id,$datos);
         }
 
         // ELIMINAR MODELO

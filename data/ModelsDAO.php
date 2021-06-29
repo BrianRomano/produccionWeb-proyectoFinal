@@ -56,7 +56,7 @@
         public function modify($id, $datos = array()){
             $modify = parent::modify($id, $datos);
             return $modify;
-        }
+        } 
 
         // ELIMINAR MODELO
         public function delete($id){

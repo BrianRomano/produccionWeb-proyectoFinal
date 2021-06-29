@@ -108,7 +108,7 @@
                                 ?>
                               </td>
                               <td>
-                                <a href="comentarios.php?act=<?php echo $com->getId()?>"><img class="icons" src="./assets/icon/activar.png" alt="Activar"></a>
+                                <a href="modificar-comentario.php?edit=<?php echo $com->getId()?>"><img class="icons" src="./assets/icon/lapiz.png" alt="Editar"></a>
                               </td>
                             </tr>
                           <?php 

@@ -28,8 +28,8 @@
         }
 
         // MODIFICAR COMENTARIO
-        public function modifyComment($datos){
-            $this->commentDao->modify($datos);
+        public function modifyComment($id,$datos){
+            $this->commentDao->modify($id,$datos);
         }
 
         // ELIMINAR COMENTARIO
