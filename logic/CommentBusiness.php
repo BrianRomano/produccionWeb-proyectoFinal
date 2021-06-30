@@ -11,8 +11,8 @@
         }
 
         // OBTENER TODOS LOS COMENTARIOS
-        public function getComments(){ 
-            $comentarios = $this->commentDao->getAll(); 
+        public function getComments($datos = array()){ 
+            $comentarios = $this->commentDao->getAll($datos); 
             return $comentarios;
         }
 
@@ -21,7 +21,7 @@
             $comentarios = $this->commentDao->getOne($id); 
             return $comentarios;
         }
-
+ 
         // GUARDAR COMENTARIO
         public function saveComment($datos){
             $this->commentDao->save($datos);

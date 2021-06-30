@@ -16,7 +16,7 @@
             parent::__construct($con);
             $this->table = 'productos';
             $this->CategoryDao = new CategoryDAO($con);
-            $this->ModelsDao = new ModelsDAO($con); 
+            $this->ModelsDao = new ModelsDAO($con);  
         }
 
         // OBTENER UN PRODUCTO
@@ -95,7 +95,7 @@
                             categoria, 
                             modelo
                             FROM $this->table INNER JOIN comments ON comments.producto = productos.id ORDER BY rank ASC";
-
+                            
             $resultado = $this->con->query($sql,PDO::FETCH_CLASS,'ProductoEntity')->fetchAll();
 
             foreach($resultado as $index=>$res){
@@ -126,4 +126,4 @@
 
     }
 
-?>
+?> 

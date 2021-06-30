@@ -15,7 +15,7 @@
         public function __construct(){
             parent::__construct(); 
         }
-        
+         
 
         /**
          * Defino los Getters
@@ -48,7 +48,7 @@
         public function getActivo(){
             return $this->activo;
         }
-        
+         
 
         /**
          * Defino los Setters

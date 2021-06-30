@@ -8,7 +8,7 @@
 
         protected $ProductoDao;
  
-        function __construct($con){
+        function __construct($con){ 
             parent::__construct($con);  
             $this->table = 'comments';
             $this->ProductoDao = new ProductoDAO($con);
@@ -26,14 +26,15 @@
     
         // OBTENER TODOS LOS COMENTARIOS
         public function getAll($where = array()){
+
             $sqlWhereStr = ' WHERE 1=1 ';
 
             if(!empty($where['prod'])){
-                $sqlWhereStr .= ' AND producto = '.$where['prod'];
+                $sqlWhereStr .= ' AND producto='.$where['prod'];
             }
 
             if(!empty($where['activo'])){
-                $sqlWhereStr .= ' AND activo = '.$where['activo'];
+                $sqlWhereStr .= ' AND activo='.$where['activo'];
             }
 
             $sql = "SELECT  id,
@@ -45,7 +46,7 @@
                             ip,
                             activo
                     FROM $this->table $sqlWhereStr";
-
+            
             $resultado = $this->con->query($sql,PDO::FETCH_CLASS,'CommentEntity')->fetchAll();
 
             foreach($resultado as $index=>$res){

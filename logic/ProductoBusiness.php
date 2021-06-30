@@ -2,7 +2,7 @@
 
 require_once('./../data/ProductoDAO.php');
 
-class ProductoBusiness{
+class ProductoBusiness{ 
 
     protected $ProductoDao;
 
@@ -14,7 +14,7 @@ class ProductoBusiness{
     public function getProductos($datos = array()){
         $productos = $this->ProductoDao->getAll($datos); 
         return $productos;
-    }
+    } 
 
     // OBTENER UN PRODUCTO
     public function getProducto($id){

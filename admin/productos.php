@@ -92,7 +92,7 @@
                               </div>
                             </div>
                           </th>
-                          <th>
+                          <th> 
                             Acción
                           </th>
                         </thead>
@@ -158,10 +158,10 @@
       </div>
     </div>
 
-      <!-- Scripts Bootstrap -->
-      <script src="./assets/bootstrap/jquery/jquery-3.3.1.min.js"></script>
-      <script src="./assets/bootstrap/popper/popper.min.js"></script>
-      <script src="./assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Scripts Bootstrap -->
+    <script src="./assets/bootstrap/jquery/jquery-3.3.1.min.js"></script>
+    <script src="./assets/bootstrap/popper/popper.min.js"></script>
+    <script src="./assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
   </body>
   <?php endif; ?>
 </html>

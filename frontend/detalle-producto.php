@@ -15,10 +15,14 @@
 
     // COMENTARIOS  
     $ComB = new CommentBusiness($con);
-    $com = $ComB->getComments(); 
+    
+    $_POST['prod'] = $_GET['id'];
+    $_POST['activo'] = '1';
+    $ComB->getComments($_POST);
 
     // GUARDAR COMENTARIO
     if(isset($_POST['comentar'])){
+
         unset($_POST['comentar']);
 
         $_POST['producto'] = $_GET['id'];
@@ -72,29 +76,26 @@
 
     <!-- COMENTARIOS -->
         <div class="comentarioRealizado">
-            <?php     
+            <?php      
                 echo '<h4>Comentarios del producto</h4>';
 
-                foreach($ComB->getComments() as $com):
-                    //Mostrar comentarios correspondiente al producto
-                    if($com->getProducto() == $_GET['id']):
-                        if($com->getActivo() == '1'):
+                foreach($ComB->getComments($_GET) as $com):
+                    if(!$com->getActivo() == null || !$com->getActivo() == '0' ):
             ?>
                 <article>
                     <p class = "nombreUsuario">
-                        Email: <?php echo $com->getEmail() ?>
+                        Email: <?php echo $com->getEmail()?>
                     </p>
-                    <p class = "comentarioUsuario">
-                        <?php echo $com->getComentario() ?>
+                    <p class = "comentarioUsuario"> 
+                        <?php echo $com->getComentario()?>
                     </p>
                     <p class="calificacionUsuario">
-                        Calificación: <?php echo $com->getRank() ?>
+                        Calificación: <?php echo $com->getRank()?>
                     </p>
                 </article>
             <?php 
-                        endif;
                     endif;
-                endforeach; 
+                endforeach;  
             ?>
         </div>
     </div>

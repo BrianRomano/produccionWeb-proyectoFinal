@@ -68,11 +68,11 @@
                 </div>
             </div>
 
-            <!-- MOSTRAR PRODUCTOS -->
+            <!-- MOSTRAR PRODUCTOS --> 
             <?php 
                 $ProdB = new ProductoBusiness($con);
-                foreach($ProdB->getProductos($_GET) as $prod):
-                    if($prod->getActivo() == 1):
+                foreach($ProdB->getProductos($_GET) as $prod): 
+                    if($prod->getActivo() == '1'):
             ?> 
 
             <!-- ARTICULO  -->
