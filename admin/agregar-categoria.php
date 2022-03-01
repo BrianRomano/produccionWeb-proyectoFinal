@@ -12,12 +12,6 @@
 
       unset($_POST['addCategory']);
 
-      if($_POST['activo']){
-        $_POST['activo'] = '1';
-      } else{
-        $_POST['activo'] = '0';
-      }
-      
       if(!empty($_GET['edit'])){
           $Catb->modifyCategory($_GET['edit'], $_POST);
       }else{
@@ -31,9 +25,10 @@
 
     if(!empty($_GET['edit'])){
         $id = $_GET['edit'];
+        $cat = $Catb->getCategorie($id);
+        $nombreCat = $cat->getNombre();
+        $activoCat = $cat->getActivo();
     }
-
-    $cat = $Catb->getCategorie($id);
 
     if($permiso == 'adm' || $permiso == 'cat'):      
   ?>
@@ -44,9 +39,42 @@
         <form action="" method="post">
               <div class="form-group">
                 <label for="exampleDropdownFormEmail1" class ="titulo">Nueva marca</label>
-                <input type="text" placeholder="Nombre" name="nombre" class="form-control" value="<?php echo isset($dato)?$dato['nombre']:''?>">
-                <label for="activo">Activar</label>
-                <input type="checkbox" value="Activo" name="activo"><br>
+                <input type="text" placeholder="Nombre" name="nombre" class="form-control" value="<?php echo isset($nombreCat) ? $nombreCat : '' ?>">
+                <?php  
+                  if(!empty($_GET['edit'])) : ?>
+                    <?php 
+                      if($activoCat == "1") : 
+                    ?>
+                    <div>
+                      <input id="radio1" type="radio" name="activo" value="1" checked>
+                      <label for="radio1">Activar</label>
+                      <input id="radio2" type="radio" name="activo" value="2">
+                      <label for="radio2">Desactivar</label>
+                    </div>
+                    <?php 
+                      else:
+                    ?>
+                    <div>
+                      <input id="radio1" type="radio" name="activo" value="1">
+                      <label for="radio1">Activar</label>
+                      <input id="radio2" type="radio" name="activo" value="2" checked>
+                      <label for="radio2">Desactivar</label>
+                    </div>
+                    <?php 
+                      endif; 
+                    ?>
+                <?php 
+                  else:
+                ?>
+                <div>
+                  <input id="radio1" type="radio" name="activo" value="1">
+                  <label for="radio1">Activar</label>
+                  <input id="radio2" type="radio" name="activo" value="2">
+                  <label for="radio2">Desactivar</label>
+                </div>
+                <?php 
+                  endif; 
+                ?>
                 <input type="submit" class="btn btn-primary loginBtn" name="addCategory" value="Agregar">
               </div>
         </form>

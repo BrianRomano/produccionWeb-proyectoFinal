@@ -21,6 +21,7 @@
                     $catB = new CategoryBusiness($con);
                     $modB = new ModelsBusiness($con);
                     foreach($catB->getCategories() as $cat):
+                        if($cat->getActivo() == "1"):
                 ?>
                 <div> 
                     <li> 
@@ -28,7 +29,7 @@
                         <?php 
                             foreach($modB->getModels() as $mod):
                                 if(isset($_GET['cat'])):
-                                    if($mod->getCategoria()->getId() == $cat->getId()):
+                                    if($mod->getCategoria()->getId() == $cat->getId() && $mod->getActivo() == "1"):
                         ?>
                         <a href="productos.php?mod=<?php echo $mod->getId()?>&cat=<?php echo isset($_GET['cat']) ? $_GET['cat'] : ' '?>"><?php echo $mod->getNombre()?></a><br>
                         <?php 
@@ -39,6 +40,7 @@
                     </li><hr>
                 </div>
                 <?php 
+                        endif;
                     endforeach; 
                 ?>
 
@@ -72,7 +74,7 @@
             <?php 
                 $ProdB = new ProductoBusiness($con);
                 foreach($ProdB->getProductos($_GET) as $prod): 
-                    if($prod->getActivo() == '1'):
+                    if($prod->getActivo() == "1" && $prod->getCategoria()->getActivo() == "1" && $prod->getModelo()->getActivo() == "1"):
             ?> 
 
             <!-- ARTICULO  -->

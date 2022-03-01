@@ -9,12 +9,6 @@
 
         unset($_POST['editComment']);
 
-        if($_POST['activo']){
-            $_POST['activo'] = '1';
-        } else{
-            $_POST['activo'] = '0';
-        }
-
         $comB->ModifyComment($_GET['edit'], $_POST);
 
         redirect('comentarios.php');
@@ -24,6 +18,8 @@
 
     if(!empty($_GET['edit'])){
         $id = $_GET['edit'];
+        $com = $comB->getComment($id);
+        $activoCom = $com->getActivo();
     }
 
     if($permiso == 'adm' || $permiso == 'com'):
@@ -33,12 +29,42 @@
   <h3 class="iniSesion">Comentarios</h3><br><br>
       <div id="login" class = "agregar">
         <form action="" method="post">
-              <div class="form-group">
-                <label for="exampleDropdownFormEmail1" class ="titulo">Activar / Desactivar </label>
-                <label for="activo">Activar</label>
-                <input type="checkbox" value="Activo" name="activo"><br>
-                <input type="submit" class="btn btn-primary loginBtn" name="editComment" value="Modificar">
+          <?php  
+            if(!empty($_GET['edit'])) : ?>
+              <?php 
+                if($activoCom == "1") : 
+              ?>
+              <div>
+                <input id="radio1" type="radio" name="activo" value="1" checked>
+                <label for="radio1">Activar</label>
+                <input id="radio2" type="radio" name="activo" value="2">
+                <label for="radio2">Desactivar</label>
               </div>
+              <?php 
+                else:
+              ?>
+              <div>
+                <input id="radio1" type="radio" name="activo" value="1">
+                <label for="radio1">Activar</label>
+                <input id="radio2" type="radio" name="activo" value="2" checked>
+                <label for="radio2">Desactivar</label>
+              </div>
+              <?php 
+                endif; 
+              ?>
+          <?php 
+            else:
+          ?>
+        <div>
+          <input id="radio1" type="radio" name="activo" value="1">
+          <label for="radio1">Activar</label>
+          <input id="radio2" type="radio" name="activo" value="2">
+          <label for="radio2">Desactivar</label>
+        </div>
+        <?php 
+          endif; 
+        ?>
+        <input type="submit" class="btn btn-primary loginBtn" name="editComment" value="Agregar">
         </form>
       </div>
   </body>

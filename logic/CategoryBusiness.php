@@ -18,8 +18,8 @@
 
         // OBTENER UNA CATEGORIA
         public function getCategorie($id){
-            $categorias = $this->CategoryDao->getOne($id); 
-            return $categorias;
+            $categoria = $this->CategoryDao->getOne($id); 
+            return $categoria;
         }
 
         // GUARDAR CATEGORIA

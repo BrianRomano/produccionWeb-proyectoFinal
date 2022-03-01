@@ -16,7 +16,6 @@
     // COMENTARIOS  
     $ComB = new CommentBusiness($con);
     
-    $_POST['prod'] = $_GET['id'];
     $_POST['activo'] = '1';
     $ComB->getComments($_POST);
 
@@ -28,6 +27,7 @@
         $_POST['producto'] = $_GET['id'];
         $_POST['ip'] = $_SERVER['REMOTE_ADDR'];
         $_POST['activo'] = '0';
+        $_POST['fecha'] = date('Y-m-d');
 
         $ComB->saveComment($_POST);
     }
@@ -80,7 +80,7 @@
                 echo '<h4>Comentarios del producto</h4>';
 
                 foreach($ComB->getComments($_GET) as $com):
-                    if(!$com->getActivo() == null || !$com->getActivo() == '0' ):
+                    if($com->getActivo() == "1"):
             ?>
                 <article>
                     <p class = "nombreUsuario">

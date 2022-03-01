@@ -17,9 +17,8 @@
         public function getOne($id){
             $sql = "SELECT id,nombre,activo,categoria FROM $this->table WHERE id = $id";
             $resultado = $this->con->query($sql,PDO::FETCH_CLASS,'ModelsEntity')->fetch();
-
             $resultado->setCategoria($this->CategoryDao->getOne($resultado->getCategoria()));
-
+  
             return $resultado;
         }
  
