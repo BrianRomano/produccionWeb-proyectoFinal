@@ -35,6 +35,7 @@
                 </div>
             </div>
         </div>
+        <div id="administrar"><a href="./../admin">Panel de Administración</a></div>
     </footer>
 
 <!-- Scripts  -->
